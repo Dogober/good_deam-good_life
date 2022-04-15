@@ -1,8 +1,9 @@
-import './App.css';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addManyMattress } from './store/reducers/mattressListReduser';
 import axios from 'axios';
+import MattressForm from './components/MattressForm';
+import './App.css';
 
 const App = () => {
 
@@ -20,8 +21,10 @@ const App = () => {
   }
   
   return (
-    <div>
-      {mattresses.map(mattress => <div key={mattress.id}>{mattress.body}</div>)}
+    <div className='app'>
+      {mattresses.map(mattress => 
+        <MattressForm key={mattress.id} props={mattress}/>
+      )}
     </div>
   );
 };
