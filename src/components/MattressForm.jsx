@@ -15,19 +15,19 @@ const MattressForm = ({props}) => {
             <hr/>
             <div className='mattress_form'>
                 <div>
-                    <div>
+                    <div className='matras_options'>
                         Матрас №{props.id}
                     </div>
-                    <div>
+                    <div className='matras_options'>
                         Тип: {props.type}
                     </div>
-                    <div>
+                    <div className='matras_options'>
                         Размер: {props.size}см
                     </div>
-                    <div>
+                    <div className='matras_options'>
                         Высота: {props.heigh}см
                     </div>
-                    <div>
+                    <div className='matras_options'>
                         Мягкость: {props.rigidity}
                     </div>
                     <div className='discription'>
