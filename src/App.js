@@ -1,22 +1,27 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addManyMattress } from './store/reducers/mattressListReduser';
+import axios from 'axios';
 
 const App = () => {
+
+  useEffect(() => {
+    getMattresses()
+  }, [])
+
   const dispatch = useDispatch()
   const mattresses = useSelector(state => state.mattressList.mattresses)
 
-  const addMattress = () => {
-    dispatch(addManyMattress([5]))
-    return mattresses
+  const getMattresses = async () => {
+    const response = await axios.get('./mattress-catalog.json')
+    const mockMattresses = response.data
+    dispatch(addManyMattress(mockMattresses))
   }
-
+  
   return (
     <div>
-      <button onClick={() => console.log(addMattress())}>
-        Add mattress
-      </button>
+      {mattresses.map(mattress => <div key={mattress.id}>{mattress.body}</div>)}
     </div>
   );
 };
