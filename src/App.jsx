@@ -11,7 +11,6 @@ const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    // console.log('USE EFFECT WORKED')
     dispatch(getMattresses())
   }, [])
   

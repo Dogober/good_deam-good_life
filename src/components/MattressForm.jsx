@@ -15,24 +15,14 @@ const MattressForm = ({props}) => {
             <hr/>
             <div className='mattress_form'>
                 <div>
-                    <div className='matras_options'>
-                        Матрас №{props.id}
-                    </div>
-                    <div className='matras_options'>
-                        Тип: {props.type}
-                    </div>
-                    <div className='matras_options'>
-                        Размер: {props.size}см
-                    </div>
-                    <div className='matras_options'>
-                        Высота: {props.heigh}см
-                    </div>
-                    <div className='matras_options'>
-                        Мягкость: {props.rigidity}
-                    </div>
-                    <div className='discription'>
-                        Описание: {props.body}
-                    </div>
+                    <div className='matras_options'>Матрас №{props.id}</div>
+                    <div className='matras_options'>Производитель: {props.producer}</div>
+                    <div className='matras_options'>Тип: {props.type}</div>
+                    <div className='matras_options'>Размер: {props.size} мм</div>
+                    <div className='matras_options'>Высота: {props.heigh} см</div>
+                    <div className='matras_options'>Нагрузка на 1 сп. место: {props.load} кг</div>
+                    <div className='matras_options'>Мягкость: {props.rigidity}</div>
+                    <div className='discription'>Описание: {props.body}</div>
                 </div>
                 <img src={props.img}/>
             </div>

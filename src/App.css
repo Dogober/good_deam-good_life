@@ -55,10 +55,11 @@ img {
     display: flex;
 }
 
-.search {
+.filters {
     display: flex;
     flex-direction: column;
     width: 210px;
+    height: 100vh;
     margin: 10px 150px 0 30px;
     padding: 30px;
     background-color: rgba(170, 201, 221, 0.3);
@@ -76,6 +77,6 @@ img {
     margin-top: 50px;
 }
 
-.size {
-    margin-top: 10px;
+.filter {
+    margin: 15px 0 50px
 }
