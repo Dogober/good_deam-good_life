@@ -1,13 +1,15 @@
 const initialState = {
     mattresses: [],
     sizeFilter: [],
-    producerFilter: []
+    producerFilter: [],
+    sorting: null
 }
 
 export const mattressListActionTypes = {
     ADD_MANY_MATTRESSES: 'ADD_MANY_MATTRESSES',
     FILTER_MATTRESSES_ON_SIZE: 'FILTER_MATTRESSES_ON_SIZE',
-    FILTER_MATTRESSES_ON_PRODUCER: 'FILTER_MATTRESSES_ON_PRODUCER'
+    FILTER_MATTRESSES_ON_PRODUCER: 'FILTER_MATTRESSES_ON_PRODUCER',
+    SORTING_MATTRESSES_ON_PRICE: 'SORTING_MATTRESSES_ON_PRICE'
 }
 
 const selectedFilters = (state, action) => {
@@ -15,6 +17,15 @@ const selectedFilters = (state, action) => {
         return state.filter(el => el !== action)
     } else {
         return [...state, action]
+    }
+}
+
+const filteredContainer = (mattresses, producerFilter, sizeFilter, sorting) => {
+    let filterMattresses = filteredMattresses(mattresses, producerFilter, sizeFilter)
+    if ( sorting == "ascending" || sorting == null) {
+        return filterMattresses.sort((a, b) => a.price - b.price)
+    } else if (sorting == "descending" || sorting == null) {
+        return filterMattresses.sort((a, b) => b.price - a.price)
     }
 }
 
@@ -26,7 +37,9 @@ const filteredMattresses = (mattresses, producerFilter, sizeFilter) => {
     } else if (producerFilter.length == 0) {
         return mattresses.filter(el => sizeFilter.includes(el.size))
     } else {
-        return mattresses.filter(el => sizeFilter.includes(el.size) && producerFilter.includes(el.producer))
+        return mattresses.filter(el => 
+            sizeFilter.includes(el.size) && producerFilter.includes(el.producer)
+        )
     }
 }
 
@@ -39,14 +52,35 @@ export const mattressListReducer = (state = initialState, action) => {
             return {
                 ...state,
                 sizeFilter: sizeFilter,
-                mattresses: filteredMattresses(action.mattresses, state.producerFilter, sizeFilter)
+                mattresses: filteredContainer(
+                    action.mattresses, 
+                    state.producerFilter, 
+                    sizeFilter, 
+                    state.sorting
+                )
             }
         case mattressListActionTypes.FILTER_MATTRESSES_ON_PRODUCER:
             const producerFilter = selectedFilters(state.producerFilter, action.currentFilter)
             return {
                 ...state,
                 producerFilter: producerFilter,
-                mattresses: filteredMattresses(action.mattresses, producerFilter, state.sizeFilter)
+                mattresses: filteredContainer(
+                    action.mattresses, 
+                    producerFilter, 
+                    state.sizeFilter, 
+                    state.sorting
+                )
+            }
+        case mattressListActionTypes.SORTING_MATTRESSES_ON_PRICE:
+            return {
+                ...state,
+                mattresses: filteredContainer(
+                    action.mattresses, 
+                    state.producerFilter, 
+                    state.sizeFilter, 
+                    action.selectedSort
+                ),
+                sorting: action.selectedSort
             }
         default:
             return state;
@@ -63,4 +97,9 @@ export const filterMattressesOnProducer = (mattresses, currentFilter) => ({
     type: mattressListActionTypes.FILTER_MATTRESSES_ON_PRODUCER, 
     mattresses, 
     currentFilter
+})
+export const sortingMattressesOnPrice = (mattresses, selectedSort) => ({
+    type: mattressListActionTypes.SORTING_MATTRESSES_ON_PRICE, 
+    mattresses,
+    selectedSort
 })
