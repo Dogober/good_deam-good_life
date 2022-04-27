@@ -3,16 +3,24 @@ import MattressForm from './MattressForm';
 import '../App.css'
 import Filters from './Filters';
 import { Select } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredMattressesOnPrice } from '../async-functions/GetMattresses';
 
-const MattressList = ({mattresses}) => {
-    const {Option} = Select
+const MattressList = () => {
+    const mattresses = useSelector(state => state.mattressList.mattresses)
+    const sorting = useSelector(state => state.mattressList.sorting)
     const dispatch = useDispatch()
     
     const sortByPrice = (selectedSort) => {
         dispatch(getFilteredMattressesOnPrice(selectedSort))
-    }   
+    }
+    const selectedSort = () => {
+        if (sorting === null) {
+            return "sortByPrice"
+        } else {
+            return sorting
+        }
+    }
 
     return (
         <div className='content'>
@@ -21,11 +29,21 @@ const MattressList = ({mattresses}) => {
                 <div>
                 <Select
                     onChange={value => sortByPrice(`${value}`)}
-                    placeholder="Сортировать по цене">
-                    <Option disabled value="sortByPrice">Сортировать по цене</Option>
-                    <Option value="ascending">От дешевых к дорогим</Option>
-                    <Option value="descending">От дорогих к дешевым</Option>
+                    value={selectedSort()}
+                >
+                    <Select.Option disabled value="sortByPrice">Сортировать по цене</Select.Option>
+                    <Select.Option value="ascending">От дешевых к дорогим</Select.Option>
+                    <Select.Option value="descending">От дорогих к дешевым</Select.Option>
                 </Select>
+                {/* <select
+                    className=''
+                    onChange={e => sortByPrice(e.target.value)}
+                    value={selectedSort()}
+                >
+                    <option disabled value="">Сортировать по цене</option>
+                    <option value="ascending" >От дешевых к дорогим</option>
+                    <option value="descending">От дорогих к дешевым</option>
+                </select> */}
                 </div>
                 {mattresses.map(mattress => 
                     <MattressForm key={mattress.id} props={mattress}/>

@@ -1,10 +1,13 @@
 import { Checkbox } from 'antd';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import '../App.css'
 import { getFilteredMattressesOnProducer, getFilteredMattressesOnSize } from '../async-functions/GetMattresses';
 
 const Filters = () => {
+    const sizeFilter = useSelector(state => state.mattressList.sizeFilter)
+    const producerFilter = useSelector(state => state.mattressList.producerFilter)
+
     const dispatch = useDispatch()
 
     const filteredOnSize = (currentFilter) => {
@@ -13,21 +16,65 @@ const Filters = () => {
     const filteredOnProducer = (currentFilter) => {
         dispatch(getFilteredMattressesOnProducer(currentFilter))
     }
+    function isSizeFilterChecked (currentFilter) {
+        if (sizeFilter.includes(currentFilter)) {
+            return true
+        } else {
+            return false
+        }
+    }
+    function isProducerFilterChecked (currentFilter) {
+        if (producerFilter.includes(currentFilter)) {
+            return true
+        } else {
+            return false
+        }
+    }
 
     return (
         <div className='filters'>
             <div>
                 <strong>Размер</strong>
                 <div className='filter'>
-                   <Checkbox onClick={(e) => filteredOnSize(e.target.id)} id='800x2000'> 800x2000</Checkbox><br/>
-                   <Checkbox onClick={(e) => filteredOnSize(e.target.id)}id='900x2000'> 900x2000</Checkbox><br/>
-                   <Checkbox onClick={(e) => filteredOnSize(e.target.id)}id='1800x2000'> 1800x2000</Checkbox><br/>
-                   <Checkbox onClick={(e) => filteredOnSize(e.target.id)} id='2000x2000'> 2000x2000</Checkbox>
+                    <Checkbox
+                        onChange={(e) => filteredOnSize(e.target.id)} 
+                        checked={isSizeFilterChecked('800x2000')}
+                        id='800x2000'
+                    > 800x2000
+                    </Checkbox><br/>
+                    <Checkbox
+                        onChange={(e) => filteredOnSize(e.target.id)}
+                        checked={isSizeFilterChecked('900x2000')}
+                        id='900x2000'
+                    > 900x2000
+                    </Checkbox><br/>
+                    <Checkbox
+                        onChange={(e) => filteredOnSize(e.target.id)}
+                        checked={isSizeFilterChecked('1800x2000')}
+                        id='1800x2000'
+                    > 1800x2000
+                    </Checkbox><br/>
+                    <Checkbox
+                        onChange={(e) => filteredOnSize(e.target.id)}
+                        checked={isSizeFilterChecked('2000x2000')}
+                        id='2000x2000'
+                    > 2000x2000
+                    </Checkbox>
                 </div>
                 <strong>Производитель</strong>
                 <div className='filter'>
-                    <Checkbox onClick={(e) => filteredOnProducer(e.target.id)} id='Good dream'> Good dream</Checkbox><br/>
-                    <Checkbox onClick={(e) => filteredOnProducer(e.target.id)} id='Sleep space'> Sleep space</Checkbox><br/>
+                    <Checkbox 
+                        onChange={(e) => filteredOnProducer(e.target.id)} 
+                        checked={isProducerFilterChecked('Good dream')}
+                        id='Good dream'
+                    > Good dream
+                    </Checkbox><br/>
+                    <Checkbox 
+                        onChange={(e) => filteredOnProducer(e.target.id)}
+                        checked={isProducerFilterChecked('Sleep space')}
+                        id='Sleep space'
+                    > Sleep space
+                    </Checkbox>
                 </div>
             </div>
         </div>

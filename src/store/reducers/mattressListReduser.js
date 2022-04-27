@@ -2,14 +2,16 @@ const initialState = {
     mattresses: [],
     sizeFilter: [],
     producerFilter: [],
-    sorting: null
+    sorting: null,
+    check: false
 }
 
 export const mattressListActionTypes = {
     ADD_MANY_MATTRESSES: 'ADD_MANY_MATTRESSES',
     FILTER_MATTRESSES_ON_SIZE: 'FILTER_MATTRESSES_ON_SIZE',
     FILTER_MATTRESSES_ON_PRODUCER: 'FILTER_MATTRESSES_ON_PRODUCER',
-    SORTING_MATTRESSES_ON_PRICE: 'SORTING_MATTRESSES_ON_PRICE'
+    SORTING_MATTRESSES_ON_PRICE: 'SORTING_MATTRESSES_ON_PRICE',
+    CHECKED_FILTERS: 'CHECKED_FILTERS'
 }
 
 const selectedFilters = (state, action) => {
@@ -22,10 +24,12 @@ const selectedFilters = (state, action) => {
 
 const filteredContainer = (mattresses, producerFilter, sizeFilter, sorting) => {
     let filterMattresses = filteredMattresses(mattresses, producerFilter, sizeFilter)
-    if ( sorting == "ascending" || sorting == null) {
+    if ( sorting == "ascending" ) {
         return filterMattresses.sort((a, b) => a.price - b.price)
-    } else if (sorting == "descending" || sorting == null) {
+    } else if (sorting == "descending" ) {
         return filterMattresses.sort((a, b) => b.price - a.price)
+    } else {
+        return filterMattresses
     }
 }
 
@@ -46,7 +50,13 @@ const filteredMattresses = (mattresses, producerFilter, sizeFilter) => {
 export const mattressListReducer = (state = initialState, action) => {
     switch (action.type) {
         case mattressListActionTypes.ADD_MANY_MATTRESSES:
-            return {...state, mattresses: action.payload}
+            return {
+                ...state, 
+                mattresses: action.payload,
+                sizeFilter: [],
+                producerFilter: [],
+                sorting: null
+            }
         case mattressListActionTypes.FILTER_MATTRESSES_ON_SIZE:
             const sizeFilter = selectedFilters(state.sizeFilter, action.currentFilter)
             return {
@@ -82,6 +92,8 @@ export const mattressListReducer = (state = initialState, action) => {
                 ),
                 sorting: action.selectedSort
             }
+        case mattressListActionTypes.CHECKED_FILTERS:
+            return {...state, check: state.check}
         default:
             return state;
     }
