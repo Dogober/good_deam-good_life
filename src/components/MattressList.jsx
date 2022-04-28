@@ -35,15 +35,6 @@ const MattressList = () => {
                     <Select.Option value="ascending">От дешевых к дорогим</Select.Option>
                     <Select.Option value="descending">От дорогих к дешевым</Select.Option>
                 </Select>
-                {/* <select
-                    className=''
-                    onChange={e => sortByPrice(e.target.value)}
-                    value={selectedSort()}
-                >
-                    <option disabled value="">Сортировать по цене</option>
-                    <option value="ascending" >От дешевых к дорогим</option>
-                    <option value="descending">От дорогих к дешевым</option>
-                </select> */}
                 </div>
                 {mattresses.map(mattress => 
                     <MattressForm key={mattress.id} props={mattress}/>

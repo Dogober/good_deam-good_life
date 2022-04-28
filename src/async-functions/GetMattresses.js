@@ -1,5 +1,11 @@
 import axios from "axios"
-import { addManyMattress, filterMattressesOnProducer, filterMattressesOnSize, sortingMattressesOnPrice } from "../store/reducers/mattressListReduser"
+import {
+    addManyMattress, 
+    addSelectedMattress, 
+    filterMattressesOnProducer, 
+    filterMattressesOnSize, 
+    sortingMattressesOnPrice
+} from "../store/reducers/mattressListReduser"
 
 export const getMattresses = () => {
     return async (dispatch) => {
@@ -27,3 +33,10 @@ export const getFilteredMattressesOnPrice = (selectedSort) => {
         dispatch(sortingMattressesOnPrice(response.data, selectedSort))
     }
 }
+export const getSelectedMattress = (params) => {
+    return async (dispatch) => {
+        const response = await axios.get('./mattress-catalog.json')
+        dispatch(addSelectedMattress(response.data, params))
+    }
+}
+

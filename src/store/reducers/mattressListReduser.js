@@ -3,7 +3,9 @@ const initialState = {
     sizeFilter: [],
     producerFilter: [],
     sorting: null,
-    check: false
+    check: false,
+    selectedMattress: {}
+
 }
 
 export const mattressListActionTypes = {
@@ -11,7 +13,7 @@ export const mattressListActionTypes = {
     FILTER_MATTRESSES_ON_SIZE: 'FILTER_MATTRESSES_ON_SIZE',
     FILTER_MATTRESSES_ON_PRODUCER: 'FILTER_MATTRESSES_ON_PRODUCER',
     SORTING_MATTRESSES_ON_PRICE: 'SORTING_MATTRESSES_ON_PRICE',
-    CHECKED_FILTERS: 'CHECKED_FILTERS'
+    ADD_SELECTED_MATTRESS: 'ADD_SELECTED_MATTRESS'
 }
 
 const selectedFilters = (state, action) => {
@@ -92,8 +94,11 @@ export const mattressListReducer = (state = initialState, action) => {
                 ),
                 sorting: action.selectedSort
             }
-        case mattressListActionTypes.CHECKED_FILTERS:
-            return {...state, check: state.check}
+        case mattressListActionTypes.ADD_SELECTED_MATTRESS:
+            return {
+                ...state, 
+                selectedMattress: action.mattresses.filter(mattress => mattress.id === action.params).pop()
+            }
         default:
             return state;
     }
@@ -114,4 +119,9 @@ export const sortingMattressesOnPrice = (mattresses, selectedSort) => ({
     type: mattressListActionTypes.SORTING_MATTRESSES_ON_PRICE, 
     mattresses,
     selectedSort
+})
+export const addSelectedMattress = (mattresses, params) => ({
+    type: mattressListActionTypes.ADD_SELECTED_MATTRESS,
+    mattresses,
+    params
 })
