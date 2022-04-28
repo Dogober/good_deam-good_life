@@ -5,7 +5,10 @@ import '../App.css'
 const MattressForm = ({props}) => {
     const route = useNavigate()
     return (
-        <div className='mattress_form_container'>
+        <div 
+            className='mattress_form_container'
+            onClick={() => route(`/${props.id}`)}
+        >
             <div className='price'>
                 <div style={{marginBottom: '5px'}}>
                     ЦЕНА:
@@ -28,12 +31,6 @@ const MattressForm = ({props}) => {
                 </div>
                 <div className='img_container'>
                     <img src={props.img}/>
-                    <div 
-                        className='mattress_description'
-                        onClick={() => route(`/${props.id}`)}
-                    >
-                        Подробно о товаре
-                    </div>
                 </div>
             </div>
         </div>

@@ -19,18 +19,6 @@ img {
     flex-direction: column;
 }
 
-.mattress_description {
-    border: 1px solid gray;
-    padding: 5px 10px;
-    border-radius: 15px;
-}
-
-.mattress_description:hover {
-    color: rgb(53, 53, 53);
-    cursor: pointer;
-    border: 1px solid rgb(53, 53, 53);
-}
-
 .mattress_form_container {
     display: flex;
     flex-direction: column;
@@ -38,6 +26,14 @@ img {
     padding: 10px;
     width: 800px;
     margin: 10px 0 10px 0;
+    border: 2px solid rgba(101, 145, 175, 0);
+    border-radius: 2px;
+
+}
+.mattress_form_container:hover {
+    border: 2px solid rgba(122, 165, 194, 0.3);
+    border-radius: 2px;
+    cursor: pointer;
 }
 
 .mattress_form {
@@ -56,9 +52,9 @@ img {
     display: flex;
     justify-content: end;
     align-items: center;
-    height: 10vh;
+    height: 15vh;
     background-color: rgb(174, 197, 212);
-    padding-right: 50px;
+    padding: 0 50px;
 }
 
 .route:hover {
@@ -103,7 +99,7 @@ img {
 }
 
 .footer {
-    height: 30vh;
+    height: 25vh;
     background-color: rgb(174, 197, 212);
 }
 
@@ -117,16 +113,58 @@ img {
     justify-content: center;
     align-items: center;
 }
+.mattress_description_content_container {
+    display: flex;
+    flex-direction: column;
+}
 
 .mattress_description_content {
     display: flex;
-    height: 60vh;
-    justify-content: center;
+    margin: 30px;
     align-items: center;
 }
-.sorting {
-    height: 30px;
-    padding: 5px;
-    border-radius: 0px;
-    border: 1px solid rgb(174, 197, 212);
+.img_detail {
+    width: 50vw;
+    height: 60vh;
+}
+.detail {
+    margin-left: 100px;
+    padding-right: 100px;
+}
+
+.detail_producer {
+    font-size: 2.2em;
+    font-weight: bold;
+}
+.detail_price {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.detail_delivery {
+    margin-top: 5px;
+    font-size: 1.2em;
+    font-style: italic;
+}
+.detail_benefits {
+    font-style: italic;
+}
+.benefits {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 5px 0;
+    font-style:normal;
+}
+.detail_comments_container {
+    margin: 30px 60px;
+    border: 1px solid rgb(163, 163, 163);
+    border-radius: 5px;
+}
+.detail_comments_title {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgba(222, 229, 233, 0.719);
+    padding: 30px;
+}
+.detail_comments_body {
+    padding: 30px;
 }
