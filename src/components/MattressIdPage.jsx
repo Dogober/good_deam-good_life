@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { getSelectedMattress } from '../async-functions/GetMattresses';
 import MattressesComments from './MattressesComments';
 
@@ -8,10 +8,10 @@ const MattressIdPage = () => {
     const selectedMattress = useSelector(state => state.mattressList.selectedMattress)
     const dispatch = useDispatch()
     const params = useParams()
+
     useEffect(() => {
         dispatch(getSelectedMattress(Number(params.id)))
-    }, [])
-
+     }, [])     
 
     return (
         <div className='mattress_description_content_container'>
@@ -39,7 +39,7 @@ const MattressIdPage = () => {
                     </div>
                 </div>
             </div>
-            <MattressesComments/>
+            <MattressesComments params={params}/>
         </div>
     );
 };

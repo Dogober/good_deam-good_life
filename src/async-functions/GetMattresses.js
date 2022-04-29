@@ -1,5 +1,6 @@
 import axios from "axios"
 import {
+    addCommentsByMattressId,
     addManyMattress, 
     addSelectedMattress, 
     filterMattressesOnProducer, 
@@ -39,4 +40,14 @@ export const getSelectedMattress = (params) => {
         dispatch(addSelectedMattress(response.data, params))
     }
 }
-
+export const getComments = (params) => {
+    return function (dispatch) {
+        fetch('https://jsonplaceholder.typicode.com/comments', {
+            params: {
+                postId:params
+            }
+        })
+        .then(response => response.json())
+        .then(json => dispatch(addCommentsByMattressId(json, params)))
+    }
+}

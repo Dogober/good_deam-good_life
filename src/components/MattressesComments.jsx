@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getComments } from '../async-functions/GetMattresses';
+import CommentForm from './CommentForm';
 
-const MattressesComments = () => {
+const MattressesComments = ({params}) => {
+    const comments = useSelector(state => state.mattressList.comments)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getComments(Number(params.id)))
+    }, [])
     return (
-        <div className='detail_comments_container'>
-            <div className='detail_comments_title'>
-                Автор комментария
-            </div>
-            <div className='detail_comments_body'>
-                Комментарий
-            </div>
+        <div>
+            <div className='detail_comments_title'>Комментарии</div>
+            {comments.map(comment =>
+                    <CommentForm 
+                        email={comment.email}
+                        body={comment.body}
+                    />
+                )
+            }
         </div>
     );
 };
