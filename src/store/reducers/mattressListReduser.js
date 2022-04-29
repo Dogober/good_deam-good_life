@@ -2,11 +2,7 @@ const initialState = {
     mattresses: [],
     sizeFilter: [],
     producerFilter: [],
-    sorting: null,
-    check: false,
-    selectedMattress: {},
-    comments: []
-
+    sorting: null
 }
 
 export const mattressListActionTypes = {
@@ -14,8 +10,6 @@ export const mattressListActionTypes = {
     FILTER_MATTRESSES_ON_SIZE: 'FILTER_MATTRESSES_ON_SIZE',
     FILTER_MATTRESSES_ON_PRODUCER: 'FILTER_MATTRESSES_ON_PRODUCER',
     SORTING_MATTRESSES_ON_PRICE: 'SORTING_MATTRESSES_ON_PRICE',
-    ADD_SELECTED_MATTRESS: 'ADD_SELECTED_MATTRESS',
-    ADD_COMMENTS_BY_MATTRESS_ID: 'ADD_COMMENTS_BY_MATTRESS_ID'
 }
 
 const selectedFilters = (state, action) => {
@@ -96,16 +90,6 @@ export const mattressListReducer = (state = initialState, action) => {
                 ),
                 sorting: action.selectedSort
             }
-        case mattressListActionTypes.ADD_SELECTED_MATTRESS:
-            return {
-                ...state, 
-                selectedMattress: action.mattresses.filter(mattress => mattress.id === action.params).pop()
-            }
-        case mattressListActionTypes.ADD_COMMENTS_BY_MATTRESS_ID:
-            return {
-                ...state,
-                comments: action.comments.filter(comment => comment.postId === action.params)
-            }
         default:
             return state;
     }
@@ -126,14 +110,4 @@ export const sortingMattressesOnPrice = (mattresses, selectedSort) => ({
     type: mattressListActionTypes.SORTING_MATTRESSES_ON_PRICE, 
     mattresses,
     selectedSort
-})
-export const addSelectedMattress = (mattresses, params) => ({
-    type: mattressListActionTypes.ADD_SELECTED_MATTRESS,
-    mattresses,
-    params
-})
-export const addCommentsByMattressId = (comments, params) => ({
-    type: mattressListActionTypes.ADD_COMMENTS_BY_MATTRESS_ID,
-    comments,
-    params
 })

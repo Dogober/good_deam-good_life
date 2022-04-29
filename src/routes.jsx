@@ -4,8 +4,8 @@ import MattressIdPage from "./components/MattressIdPage";
 import MattressList from "./components/MattressList";
 
 export const routes = [
-    {path: '/', element: <MattressList/>},
+    {path: '/home', element: <MattressList/>},
     {path: '/about', element: <About/>},
-    {path: '/:id', element: <MattressIdPage/>},
-    {path: '*', element: <Navigate replace to='/'/>}
+    {path: '/home/:id', element: <MattressIdPage/>},
+    {path: '*', element: <Navigate replace to='/home'/>}
 ]

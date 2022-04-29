@@ -4,7 +4,7 @@ import { getComments } from '../async-functions/GetMattresses';
 import CommentForm from './CommentForm';
 
 const MattressesComments = ({params}) => {
-    const comments = useSelector(state => state.mattressList.comments)
+    const comments = useSelector(state => state.mattressId.comments)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getComments(Number(params.id)))
@@ -13,7 +13,8 @@ const MattressesComments = ({params}) => {
         <div>
             <div className='detail_comments_title'>Комментарии</div>
             {comments.map(comment =>
-                    <CommentForm 
+                    <CommentForm
+                        key={comment.id}
                         email={comment.email}
                         body={comment.body}
                     />

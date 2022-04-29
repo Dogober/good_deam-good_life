@@ -7,7 +7,7 @@ const MattressForm = ({props}) => {
     return (
         <div 
             className='mattress_form_container'
-            onClick={() => route(`/${props.id}`)}
+            onClick={() => route(`/home/${props.id}`)}
         >
             <div className='price'>
                 <div style={{marginBottom: '5px'}}>
