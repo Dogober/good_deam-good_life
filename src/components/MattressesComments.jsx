@@ -2,12 +2,19 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComments } from '../async-functions/GetMattresses';
 import CommentForm from './CommentForm';
+import Loader from './Loader';
 
 const MattressesComments = ({params}) => {
     const comments = useSelector(state => state.mattressId.comments)
     const selectedMattress = useSelector(state => state.mattressId.selectedMattress)
+    const loading = useSelector(state => state.mattressId.loading)
     const error = useSelector(state => state.mattressId.error)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getComments(Number(params.id)))
+    }, [])
+
     const renderingCommentsByCondition = () => {
         if (error) {
             return <CommentForm email={error} body={error}/>
@@ -23,13 +30,16 @@ const MattressesComments = ({params}) => {
             )
         }
     }
-    useEffect(() => {
-        dispatch(getComments(Number(params.id)))
-    }, [])
+
     return (
         <div>
-            <div className='detail_comments_title'>Комментарии</div>
-            {renderingCommentsByCondition()}
+            {loading === true
+            ?<Loader/>
+            :<>
+                <div className='detail_comments_title'>Комментарии</div>
+                {renderingCommentsByCondition()}
+            </>
+            }
         </div>
     );
 };

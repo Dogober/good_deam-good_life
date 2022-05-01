@@ -1,7 +1,8 @@
 const inisialState = {
     selectedMattress: null,
     comments: [],
-    error: null
+    error: null,
+    loading: true
 }
 
 const mattressIdActionTypes = {
@@ -15,13 +16,15 @@ export const mattressIdReducer = (state = inisialState, action) => {
         case mattressIdActionTypes.ADD_SELECTED_MATTRESS:
             return {
                 ...state,
+                loading: true,
                 selectedMattress: action.mattresses
             }
         case mattressIdActionTypes.ADD_COMMENTS_BY_MATTRESS_ID:
             return {
                 ...state,
                 comments: action.comments,
-                error: null
+                error: null,
+                loading: false
             }
         case mattressIdActionTypes.COMMENTS_ERROR:
             return {

@@ -42,11 +42,14 @@ export const getSelectedMattress = (params) => {
 }
 export const getComments = (params) => {
     return async (dispatch) => {
-        try {
-            const response = await axios.get('https://jsonplaceholder.typicode.com/comments?postId=' + params)
-            dispatch(addCommentsByMattressId(response.data))
-        } catch (e) {
-            dispatch(catchError(e.message))
-        }
+        setTimeout(async () => {
+            try {
+                const response = await axios.get('https://jsonplaceholder.typicode.com/comments?postId=' + params)
+                dispatch(addCommentsByMattressId(response.data))
+            } catch (e) {
+                dispatch(catchError(e.message))
+            }
+    
+        }, 1000)
     }
 }

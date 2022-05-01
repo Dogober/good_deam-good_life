@@ -162,7 +162,7 @@ img {
 .detail_comments_title {
     text-align: center;
     background-color: rgba(222, 229, 233, 0.719);
-    margin: 30px 60px 40px;
+    margin: 0 60px 40px;
     font-size: 1.3em;
 }
 .detail_comments_email {
@@ -190,4 +190,29 @@ img {
 }
 .move_to_another_page {
     height: 60vh;
+}
+.loader_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5em;
+    color: rgb(113, 149, 173);
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+.loader {
+    width: 60px;
+    height: 60px;
+    margin-top: 20px;
+    border: 4px dashed rgb(113, 149, 173);
+    border-radius: 30px;
+    animation: rotation 2s infinite linear
+}
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
