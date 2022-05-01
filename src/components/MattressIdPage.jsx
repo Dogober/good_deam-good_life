@@ -10,32 +10,32 @@ const MattressIdPage = () => {
     const dispatch = useDispatch()
     const params = useParams()
 
-    console.log(selectedMattress)
+useEffect(() => {
+    dispatch(getSelectedMattress(Number(params.id)))
+}, [])
 
-    useEffect(() => {
-        dispatch(getSelectedMattress(Number(params.id)))
-     }, [])    
-
-    return (
-        <div className='mattress_description_content_container'>
-            {selectedMattress === undefined
-                ?<ProductNotFound/>
-                :<div className='mattress_description_content_container'>
-                    <div className='mattress_description_content'>
-                        <div>
-                            <img className='img_detail' src={selectedMattress.img}/>
+const renderingSelectedMattressByCondition = () => {
+    if (selectedMattress === undefined) {
+        return <div>
+                    <ProductNotFound params={params}/>
+                    <MattressesComments params={params}/>
+                </div>
+    } else if (selectedMattress !== null) {
+        return <><div className='mattress_description_content'>
+                    <div>
+                        <img className='img_detail' src={selectedMattress.img}/>
+                    </div>
+                    <div className='detail'>
+                        <div className='detail_producer'>
+                            {selectedMattress.producer}
                         </div>
-                        <div className='detail'>
-                            <div className='detail_producer'>
-                                {selectedMattress.producer}
-                            </div>
-                            <div className='detail_price'>
-                                {selectedMattress.price} ₴
-                            </div>
-                            <div className='detail_delivery'>
-                                Доставка в течении 7 дней
-                            </div>
-                            <div className='detail_benefits'>
+                        <div className='detail_price'>
+                            {selectedMattress.price} ₴
+                        </div>
+                        <div className='detail_delivery'>
+                            Доставка в течении 7 дней
+                        </div>
+                        <div className='detail_benefits'>
                             <div className='benefits'>10 лет гарантии</div>
                                 Гарантия распространяется на наполнение.
                             <div className='benefits'>Низкая цена</div>
@@ -46,8 +46,17 @@ const MattressIdPage = () => {
                     </div>
                 </div>
                 <MattressesComments params={params}/>
-            </div>
-            }
+            </>               
+    } else {
+        return <div className='move_to_another_page'>
+            
+        </div>
+    }
+}
+
+    return (
+        <div className='mattress_description_content_container'>
+            {renderingSelectedMattressByCondition()}
         </div>
     );
 };

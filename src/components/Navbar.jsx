@@ -11,7 +11,7 @@ const Navbar = () => {
 
     const home = () => {
         dispatch(getMattresses())
-        route('/')
+        route('/home')
     }
     
     return (

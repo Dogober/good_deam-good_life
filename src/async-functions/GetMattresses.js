@@ -1,5 +1,5 @@
 import axios from "axios"
-import { addCommentsByMattressId, addSelectedMattress } from "../store/reducers/mattressIdReducer"
+import { addCommentsByMattressId, addSelectedMattress, catchError } from "../store/reducers/mattressIdReducer"
 import {
     addManyMattress, 
     filterMattressesOnProducer, 
@@ -36,17 +36,17 @@ export const getFilteredMattressesOnPrice = (selectedSort) => {
 export const getSelectedMattress = (params) => {
     return async (dispatch) => {
         const response = await axios.get('/mattress-catalog.json')
-        dispatch(addSelectedMattress(response.data, params))
+        const selected = response.data.filter(mattress => mattress.id === params).pop()
+        dispatch(addSelectedMattress(selected))
     }
 }
 export const getComments = (params) => {
-    return function (dispatch) {
-        fetch('https://jsonplaceholder.typicode.com/comments', {
-            params: {
-                postId:params
-            }
-        })
-        .then(response => response.json())
-        .then(json => dispatch(addCommentsByMattressId(json, params)))
+    return async (dispatch) => {
+        try {
+            const response = await axios.get('https://jsonplaceholder.typicode.com/comments?postId=' + params)
+            dispatch(addCommentsByMattressId(response.data))
+        } catch (e) {
+            dispatch(catchError(e.message))
+        }
     }
 }

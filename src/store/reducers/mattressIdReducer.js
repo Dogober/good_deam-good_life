@@ -1,11 +1,13 @@
 const inisialState = {
-    selectedMattress: {},
+    selectedMattress: null,
     comments: [],
+    error: null
 }
 
 const mattressIdActionTypes = {
     ADD_SELECTED_MATTRESS: 'ADD_SELECTED_MATTRESS',
-    ADD_COMMENTS_BY_MATTRESS_ID: 'ADD_COMMENTS_BY_MATTRESS_ID'
+    ADD_COMMENTS_BY_MATTRESS_ID: 'ADD_COMMENTS_BY_MATTRESS_ID',
+    COMMENTS_ERROR: 'CATCH_ERROR'
 }
 
 export const mattressIdReducer = (state = inisialState, action) => {
@@ -13,25 +15,31 @@ export const mattressIdReducer = (state = inisialState, action) => {
         case mattressIdActionTypes.ADD_SELECTED_MATTRESS:
             return {
                 ...state,
-                selectedMattress: action.mattresses.filter(mattress => mattress.id === action.params).pop()
+                selectedMattress: action.mattresses
             }
         case mattressIdActionTypes.ADD_COMMENTS_BY_MATTRESS_ID:
             return {
                 ...state,
-                comments: action.comments.filter(comment => comment.postId === action.params)
+                comments: action.comments,
+                error: null
+            }
+        case mattressIdActionTypes.COMMENTS_ERROR:
+            return {
+                ...state,
+                error: action.payload,
+                comments: []
             }
         default:
             return state;
     }
 }
 
-export const addSelectedMattress = (mattresses, params) => ({
+export const addSelectedMattress = (mattresses) => ({
     type: mattressIdActionTypes.ADD_SELECTED_MATTRESS,
     mattresses,
-    params
 })
-export const addCommentsByMattressId = (comments, params) => ({
+export const addCommentsByMattressId = (comments) => ({
     type: mattressIdActionTypes.ADD_COMMENTS_BY_MATTRESS_ID,
     comments,
-    params
 })
+export const catchError = (payload) => ({type: mattressIdActionTypes.COMMENTS_ERROR, payload})

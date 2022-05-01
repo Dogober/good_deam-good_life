@@ -188,3 +188,6 @@ img {
     font-size: 20px;
     margin-top: 25px;
 }
+.move_to_another_page {
+    height: 60vh;
+}

@@ -49,7 +49,6 @@ export const mattressListReducer = (state = initialState, action) => {
     switch (action.type) {
         case mattressListActionTypes.ADD_MANY_MATTRESSES:
             return {
-                ...state, 
                 mattresses: action.payload,
                 sizeFilter: [],
                 producerFilter: [],
