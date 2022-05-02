@@ -2,7 +2,8 @@ const initialState = {
     mattresses: [],
     sizeFilter: [],
     producerFilter: [],
-    sorting: null
+    sorting: null,
+    homePageIsLoading: true,
 }
 
 export const mattressListActionTypes = {
@@ -10,6 +11,8 @@ export const mattressListActionTypes = {
     FILTER_MATTRESSES_ON_SIZE: 'FILTER_MATTRESSES_ON_SIZE',
     FILTER_MATTRESSES_ON_PRODUCER: 'FILTER_MATTRESSES_ON_PRODUCER',
     SORTING_MATTRESSES_ON_PRICE: 'SORTING_MATTRESSES_ON_PRICE',
+    HOME_PAGE_IS_LOADING: 'HOME_PAGE_IS_LOADING',
+    CURRENT_STATE: 'CURRENT_STATE',
 }
 
 const selectedFilters = (state, action) => {
@@ -52,7 +55,12 @@ export const mattressListReducer = (state = initialState, action) => {
                 mattresses: action.payload,
                 sizeFilter: [],
                 producerFilter: [],
-                sorting: null
+                sorting: null,
+                homePageIsLoading: false
+            }
+        case mattressListActionTypes.CURRENT_STATE:
+            return {
+                ...state,
             }
         case mattressListActionTypes.FILTER_MATTRESSES_ON_SIZE:
             const sizeFilter = selectedFilters(state.sizeFilter, action.currentFilter)
@@ -94,7 +102,11 @@ export const mattressListReducer = (state = initialState, action) => {
     }
 }
 
-export const addManyMattress = (payload) => ({type: mattressListActionTypes.ADD_MANY_MATTRESSES, payload})
+export const currentState = () => ({type: mattressListActionTypes.CURRENT_STATE})
+export const addManyMattress = (payload, reboot) => ({
+    type: mattressListActionTypes.ADD_MANY_MATTRESSES, 
+    payload
+})
 export const filterMattressesOnSize = (mattresses, currentFilter) => ({
     type: mattressListActionTypes.FILTER_MATTRESSES_ON_SIZE, 
     mattresses, 

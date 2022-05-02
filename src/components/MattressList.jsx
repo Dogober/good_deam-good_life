@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MattressForm from './MattressForm';
 import '../App.css'
 import Filters from './Filters';
 import { Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilteredMattressesOnPrice } from '../async-functions/GetMattresses';
+import { getFilteredMattressesOnPrice, getMattresses } from '../async-functions/GetMattresses';
 
 const MattressList = () => {
     const mattresses = useSelector(state => state.mattressList.mattresses)
+    const homePageIsLoading = useSelector(state => state.mattressList.homePageIsLoading)
     const sorting = useSelector(state => state.mattressList.sorting)
     const dispatch = useDispatch()
-    
+
+    useEffect(() => {
+        dispatch(getMattresses(homePageIsLoading))
+    }, [])
+
     const sortByPrice = (selectedSort) => {
         dispatch(getFilteredMattressesOnPrice(selectedSort))
     }
