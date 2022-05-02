@@ -2,7 +2,6 @@ import axios from "axios"
 import { addCommentsByMattressId, addSelectedMattress, catchError } from "../store/reducers/mattressIdReducer"
 import {
     addManyMattress, 
-    currentState, 
     filterMattressesOnProducer, 
     filterMattressesOnSize, 
     sortingMattressesOnPrice
@@ -13,8 +12,6 @@ export const getMattresses = (homePageIsLoading) => {
         if (homePageIsLoading) {
             const response = await axios.get('/mattress-catalog.json')
             dispatch(addManyMattress(response.data))
-        } else {
-            dispatch(currentState())
         }
     }
 }

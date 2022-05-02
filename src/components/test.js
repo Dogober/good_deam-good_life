@@ -1,9 +1,7 @@
+const ar = [{}, {}]
+
 const test = () => {
-    if ([] == false) {
-        return true
-    } else {
-        return false
-    }
+   return JSON.parse(ar)
 }
 
-console.log(test())
+console.log(JSON.parse(ar))

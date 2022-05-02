@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getSelectedMattress } from '../async-functions/GetMattresses';
+import { addToBasket } from '../store/reducers/mattressIdReducer';
 import MattressesComments from './MattressesComments';
 import ProductNotFound from './ProductNotFound';
 
 const MattressIdPage = () => {
     const selectedMattress = useSelector(state => state.mattressId.selectedMattress)
+    const itemsInTheCart = useSelector(state => state.mattressId.itemsInTheCart)
     const dispatch = useDispatch()
     const params = useParams()
+    const route = useNavigate()
 
 useEffect(() => {
     dispatch(getSelectedMattress(Number(params.id)))
@@ -30,7 +33,23 @@ const renderingSelectedMattressByCondition = () => {
                             {selectedMattress.producer}
                         </div>
                         <div className='detail_price'>
-                            {selectedMattress.price} ₴
+                            <div>
+                                {selectedMattress.price} ₴
+                            </div>
+                            {itemsInTheCart.find(item => item.id === selectedMattress.id)
+                                ?<div 
+                                    className='already_bought'
+                                    onClick={() => route('/busket')}
+                                >
+                                    В корзине
+                                </div>
+                                :<div 
+                                    className='add_to_cart'
+                                    onClick={() => dispatch(addToBasket())}
+                                >
+                                    Купить
+                                </div>
+                            }
                         </div>
                         <div className='detail_delivery'>
                             Доставка в течении 7 дней

@@ -8,30 +8,37 @@ const Navbar = () => {
     const route = useNavigate()
     const dispatch = useDispatch()
     const homePageIsLoading = useSelector(state => state.mattressList.homePageIsLoading)
+    const itemsInTheCart = useSelector(state => state.mattressId.itemsInTheCart)
 
     const home = () => {
-        if (homePageIsLoading) {
-            dispatch(getMattresses(false))
-            route('/home')
-        } else {
+        if (!homePageIsLoading) {
             dispatch(getMattresses(true))
-            route('/home')
         }
+        route('/home')
     }
     
     return (
         <div className='navbar'>
-            <div 
-                className='route' 
-                onClick={() => route('/about')}
-            >
-                О магазине
+            <img 
+                className='basket' src='/basket.png'
+                onClick={() => route('/busket')}
+            />
+            <div className='number_of_goods'>
+                {itemsInTheCart.length}
             </div>
-            <div 
-                className='route' 
-                onClick={() => home()}
-            >
-                Главная
+            <div className='route_container'>
+                <div 
+                    className='route' 
+                    onClick={() => route('/about')}
+                >
+                    О магазине
+                </div>
+                <div 
+                    className='route' 
+                    onClick={() => home()}
+                >
+                    Главная
+                </div>
             </div>
         </div>
     );
