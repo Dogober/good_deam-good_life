@@ -1,7 +1,6 @@
-const ar = [{}, {}]
+const array1 = [1, 2, 3, 4];
 
-const test = () => {
-   return JSON.parse(ar)
-}
+const sumWithInitial = array1.reduce(
+  (p, g) => p + g);
 
-console.log(JSON.parse(ar))
+console.log(sumWithInitial);

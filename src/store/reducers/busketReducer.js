@@ -3,7 +3,7 @@ const inisialState = {
 }
 
 const busketActionTypes = {
-    ADD_TO_BASKET: 'ADD_TO_BASKET'
+    ADD_TO_BASKET: 'ADD_TO_BASKET',
 }
 
 export const busketReducer = (state = inisialState, action) => {

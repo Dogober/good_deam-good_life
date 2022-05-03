@@ -103,12 +103,57 @@ img {
     height: 175px;
     margin-right: 20px;
 }
-.item_price {
-    font-size: 20px;
-    font-weight: bold;
-    margin-left: auto;
+.item_control_panel {
+    display: flex;
+    align-items: center;
     margin-bottom: 10px;
 }
+.counter_container {
+    display: flex;
+    align-items: center;
+    margin: 0 40px 0 auto;
+}
+.counter {
+    font-size: 16px;
+    margin: 0 10px;
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 5px;
+    padding: 5px 20px
+}
+.counter_button {
+    font-size: 26px;
+    color: rgb(40, 86, 117);
+    cursor: pointer;
+}
+.item_price {
+    font-size: 22px;
+    margin-left: 50px;
+}
+.total_cost {
+    display: flex;
+    align-items: center;
+    margin: 40px 10px 30px auto;
+    border: 1px solid rgb(40, 86, 117);
+    border-radius: 5px;
+    font-size: 25px;
+    padding: 20px;
+    font-weight: bold;
+}
+.checkout {
+    margin-left: 15px;
+    border-radius: 5px;
+    background-color: rgb(40, 86, 117);
+    color: rgb(238, 243, 247);
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+    opacity: 1;
+    transition: 0.2s;
+}
+.checkout:hover {
+    opacity: 0.8;
+}
+
 .number_of_goods {
     display: flex;
     justify-content: center;
