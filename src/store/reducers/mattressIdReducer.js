@@ -10,7 +10,7 @@ const mattressIdActionTypes = {
     ADD_SELECTED_MATTRESS: 'ADD_SELECTED_MATTRESS',
     ADD_COMMENTS_BY_MATTRESS_ID: 'ADD_COMMENTS_BY_MATTRESS_ID',
     COMMENTS_ERROR: 'CATCH_ERROR',
-    ADD_TO_BASKET: 'ADD_TO_BASKET'
+    ADD_TO_BASKET: 'ADD_TO_BASKET',
 }
 
 export const mattressIdReducer = (state = inisialState, action) => {

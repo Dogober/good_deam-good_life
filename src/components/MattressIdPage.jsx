@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getSelectedMattress } from '../async-functions/GetMattresses';
-import { addToBasket } from '../store/reducers/mattressIdReducer';
+import { addSelectedMattress, addToBasket } from '../store/reducers/mattressIdReducer';
 import MattressesComments from './MattressesComments';
 import ProductNotFound from './ProductNotFound';
 
@@ -15,7 +15,11 @@ const MattressIdPage = () => {
 
 useEffect(() => {
     dispatch(getSelectedMattress(Number(params.id)))
+    return () => {
+        dispatch(addSelectedMattress(null))
+    }
 }, [])
+useEffect(() => window.scrollTo(0, 0), []);
 
 const renderingSelectedMattressByCondition = () => {
     if (selectedMattress === undefined) {
