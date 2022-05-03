@@ -8,7 +8,7 @@ const Navbar = () => {
     const route = useNavigate()
     const dispatch = useDispatch()
     const homePageIsLoading = useSelector(state => state.mattressList.homePageIsLoading)
-    const itemsInTheCart = useSelector(state => state.mattressId.itemsInTheCart)
+    const itemsInTheCart = useSelector(state => state.busket.itemsInTheCart)
 
     const home = () => {
         if (!homePageIsLoading) {

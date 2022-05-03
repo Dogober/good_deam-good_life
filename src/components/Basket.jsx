@@ -1,21 +1,27 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Item from './Item';
 
 const Basket = () => {
-    const itemsInTheCart = useSelector(state => state.mattressId.itemsInTheCart)
-    const goods = () => {
+    const itemsInTheCart = useSelector(state => state.busket.itemsInTheCart)
+
+    const itemes = () => {
         if (itemsInTheCart != false) {
-            return <div>
-                Корзина
+            return <div className='basket_page'>
+                <div className='item_form'>
+                    {itemsInTheCart.map(item =>
+                        <Item key={item.id} item={item}/>
+                    )}
+                </div>
             </div>
         } else {
-            return 
+            return <div className='empty_basket'>
+                Корзина пуста
+            </div>
         }
     }
     return (
-        <div className='basket_page'>
-            {goods()}
-        </div>
+        itemes()
     );
 };
 

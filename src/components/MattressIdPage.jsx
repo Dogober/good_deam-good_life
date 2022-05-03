@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getSelectedMattress } from '../async-functions/GetMattresses';
-import { addSelectedMattress, addToBasket } from '../store/reducers/mattressIdReducer';
+import { addToBasket } from '../store/reducers/busketReducer';
+import { addSelectedMattress } from '../store/reducers/mattressIdReducer';
 import MattressesComments from './MattressesComments';
 import ProductNotFound from './ProductNotFound';
 
 const MattressIdPage = () => {
     const selectedMattress = useSelector(state => state.mattressId.selectedMattress)
-    const itemsInTheCart = useSelector(state => state.mattressId.itemsInTheCart)
+    const itemsInTheCart = useSelector(state => state.busket.itemsInTheCart)
     const dispatch = useDispatch()
     const params = useParams()
     const route = useNavigate()
@@ -49,7 +50,7 @@ const renderingSelectedMattressByCondition = () => {
                                 </div>
                                 :<div 
                                     className='add_to_cart'
-                                    onClick={() => dispatch(addToBasket())}
+                                    onClick={() => dispatch(addToBasket(selectedMattress))}
                                 >
                                     Купить
                                 </div>
