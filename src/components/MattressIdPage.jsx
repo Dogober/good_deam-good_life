@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getSelectedMattress } from '../async-functions/GetMattresses';
-import { addToBasket } from '../store/reducers/busketReducer';
+import { addToCart } from '../store/reducers/cartReducer';
 import { addSelectedMattress } from '../store/reducers/mattressIdReducer';
 import MattressesComments from './MattressesComments';
 import ProductNotFound from './ProductNotFound';
 
 const MattressIdPage = () => {
     const selectedMattress = useSelector(state => state.mattressId.selectedMattress)
-    const itemsInTheCart = useSelector(state => state.busket.itemsInTheCart)
+    const purchasedItems = useSelector(state => state.cart.purchasedItems)
     const dispatch = useDispatch()
     const params = useParams()
     const route = useNavigate()
@@ -41,16 +41,16 @@ const renderingSelectedMattressByCondition = () => {
                             <div>
                                 {selectedMattress.price} ₴
                             </div>
-                            {itemsInTheCart.find(item => item.id === selectedMattress.id)
+                            {purchasedItems.find(item => item.purchasedItem.id === selectedMattress.id)
                                 ?<div 
                                     className='already_bought'
-                                    onClick={() => route('/busket')}
+                                    onClick={() => route('/cart')}
                                 >
                                     В корзине
                                 </div>
                                 :<div 
                                     className='add_to_cart'
-                                    onClick={() => dispatch(addToBasket(selectedMattress))}
+                                    onClick={() => dispatch(addToCart(selectedMattress))}
                                 >
                                     Купить
                                 </div>

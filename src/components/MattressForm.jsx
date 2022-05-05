@@ -9,16 +9,10 @@ const MattressForm = ({props}) => {
             className='mattress_form_container'
             onClick={() => route(`/home/${props.id}`)}
         >
-            <div className='price'>
-                <div style={{marginBottom: '5px'}}>
-                    ЦЕНА:
-                </div>
-                <div>
-                    {props.price} ₴
-                </div>
-            </div>
-            <hr/>
             <div className='mattress_form'>
+                <div>
+                    <img className='img_container' src={props.img}/>
+                </div>
                 <div>
                     <div className='mattress_options'>Матрас №{props.id}</div>
                     <div className='mattress_options'>Производитель: {props.producer}</div>
@@ -27,11 +21,11 @@ const MattressForm = ({props}) => {
                     <div className='mattress_options'>Высота: {props.heigh} см</div>
                     <div className='mattress_options'>Нагрузка на 1 сп. место: {props.load} кг</div>
                     <div className='mattress_options'>Мягкость: {props.rigidity}</div>
-                    <div className='mattress_options'>Описание: {props.body}</div>
+                    <div className='mattress_options'>{props.body}</div>
                 </div>
-                <div className='img_container'>
-                    <img src={props.img}/>
-                </div>
+            </div>
+            <div className='price'>
+                {props.price} ₴
             </div>
         </div>
     );
