@@ -5,10 +5,7 @@ import CommentForm from './CommentForm';
 import Loader from './Loader';
 
 const MattressesComments = ({params}) => {
-    const comments = useSelector(state => state.mattressId.comments)
-    const selectedMattress = useSelector(state => state.mattressId.selectedMattress)
-    const loading = useSelector(state => state.mattressId.loading)
-    const error = useSelector(state => state.mattressId.error)
+    const {comments, selectedMattress, loading, error} = useSelector(state => state.mattressId)
     const dispatch = useDispatch()
 
     useEffect(() => {

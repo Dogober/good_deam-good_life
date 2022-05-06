@@ -7,9 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredMattressesOnPrice, getMattresses } from '../async-functions/GetMattresses';
 
 const MattressList = () => {
-    const mattresses = useSelector(state => state.mattressList.mattresses)
-    const homePageIsLoading = useSelector(state => state.mattressList.homePageIsLoading)
-    const sorting = useSelector(state => state.mattressList.sorting)
+    const {mattresses, homePageIsLoading, sorting} = useSelector(state => state.mattressList)
     const dispatch = useDispatch()
 
     useEffect(() => {

@@ -5,8 +5,7 @@ import '../App.css'
 import { getFilteredMattressesOnProducer, getFilteredMattressesOnSize } from '../async-functions/GetMattresses';
 
 const Filters = () => {
-    const sizeFilter = useSelector(state => state.mattressList.sizeFilter)
-    const producerFilter = useSelector(state => state.mattressList.producerFilter)
+    const {sizeFilter, producerFilter} = useSelector(state => state.mattressList)
 
     const dispatch = useDispatch()
 
