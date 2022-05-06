@@ -37,7 +37,7 @@ const Navbar = () => {
                     className='route' 
                     onClick={() => home()}
                 >
-                    Главная
+                    <img className='logo' src='/LOGO3.png'/>
                 </div>
             </div>
             <img 
