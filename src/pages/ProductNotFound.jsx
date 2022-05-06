@@ -1,5 +1,4 @@
 import React from 'react';
-import MattressesComments from './MattressesComments';
 
 const ProductNotFound = () => {
     return (

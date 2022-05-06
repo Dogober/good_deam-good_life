@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
-import About from "./components/About";
-import Cart from "./components/Cart";
-import MattressIdPage from "./components/MattressIdPage";
-import MattressList from "./components/MattressList";
+import Cart from "./pages/Cart";
+import MattressIdPage from "./pages/MattressIdPage";
+import MattressList from "./pages/MattressList";
+import About from "./pages/About";
 
 export const routes = [
     {path: '/home', element: <MattressList/>},

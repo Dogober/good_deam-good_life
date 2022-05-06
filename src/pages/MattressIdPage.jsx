@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getSelectedMattress } from '../async-functions/GetMattresses';
 import { addToCart } from '../store/reducers/cartReducer';
 import { addSelectedMattress } from '../store/reducers/mattressIdReducer';
-import MattressesComments from './MattressesComments';
+import MattressesComments from '../components/MattressesComments';
 import ProductNotFound from './ProductNotFound';
 
 const MattressIdPage = () => {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import MattressForm from './MattressForm';
+import MattressForm from '../components/MattressForm';
 import '../App.css'
-import Filters from './Filters';
+import Filters from '../components/Filters';
 import { Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredMattressesOnPrice, getMattresses } from '../async-functions/GetMattresses';
