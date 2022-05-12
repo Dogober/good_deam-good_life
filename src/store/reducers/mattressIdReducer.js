@@ -1,4 +1,4 @@
-const inisialState = {
+const initialState = {
     selectedMattress: null,
     comments: [],
     error: null,
@@ -11,7 +11,7 @@ const mattressIdActionTypes = {
     COMMENTS_ERROR: 'CATCH_ERROR',
 }
 
-export const mattressIdReducer = (state = inisialState, action) => {
+export const mattressIdReducer = (state = initialState, action) => {
     switch (action.type) {
         case mattressIdActionTypes.ADD_SELECTED_MATTRESS:
             return {

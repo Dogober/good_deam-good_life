@@ -1,12 +1,15 @@
-const ar = [{id: 1, number: 1}, {id: 2, number: 1}]
-
-const sumWithInitial = (array) => {
-   for (let i = 0; i < array.length; i++) {
-      if (array[i].id === 1) {
-         array[i].number = 2
-      }
-   }
-   return array
+const obj = {value: "", blurHanler: false}
+const map = new Map([["surname", obj], ["name", obj], ["beMarried", false]])
+const updateMapState = (map) => {
+    const mapCopy = new Map()
+    for (let dataField of map.keys()) {
+        if (typeof(map.get(dataField)) == 'object') {
+            mapCopy.set(dataField, {...map.get(dataField)})
+        } else {
+            mapCopy.set(dataField, map.get(dataField))
+        }
+    }
+    mapCopy.get("name").value = "Nick"
+    return mapCopy
 }
-
-console.log(sumWithInitial(ar));
+console.log(updateMapState(map));

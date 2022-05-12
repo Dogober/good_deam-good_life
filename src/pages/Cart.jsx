@@ -1,9 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ItemInCart from '../components/ItemInCart';
 
 const Cart = () => {
     const purchasedItems = useSelector(state => state.cart.purchasedItems)
+    const route = useNavigate()
     const totalCost = () => {
         let rezult = 0;
         const calcTotalCost = purchasedItems.reduce((firstItem, currentItem) => 
@@ -25,7 +27,7 @@ const Cart = () => {
                         {totalCost()} ₴
                         <div 
                             className='checkout'
-                            // onClick={}
+                            onClick={() => route('/chekout')}
                         >
                             Оформить заказ
                         </div>

@@ -1,4 +1,4 @@
-const inisialState = {
+const initialState = {
     purchasedItems: []
 }
 
@@ -19,7 +19,7 @@ const numberChange = (ar, id, changes) => {
     }
 }
 
-export const cartReducer = (state = inisialState, action) => {
+export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case cartActionTypes.ADD_TO_CART:
             return {
