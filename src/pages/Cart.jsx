@@ -27,7 +27,7 @@ const Cart = () => {
                         {totalCost()} ₴
                         <div 
                             className='checkout'
-                            onClick={() => route('/chekout')}
+                            onClick={() => route('/checkout')}
                         >
                             Оформить заказ
                         </div>

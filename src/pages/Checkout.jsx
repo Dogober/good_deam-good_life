@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { formDataBlurHandlerChange, formDataValueChange, validityChek } from '../store/reducers/chekoutReducer';
+import { deliveryMethodCheck, formDataBlurHandlerChange, formDataValueChange, paymentMethodCheck, validityCheck } from '../store/reducers/checkoutReducer';
 
-const Chekout = () => {
+const Checkout = () => {
     const {purchasedItems} = useSelector(state => state.cart)
-    const {formData, validity} = useSelector(state => state.chekout)
+    const {formData, delivery, payment, validity} = useSelector(state => state.checkout)
     const dispatch = useDispatch()
 
     const totalCost = () => {
@@ -32,7 +32,7 @@ const Chekout = () => {
     }
     const checkForm = (e) => {
         e.preventDefault()
-        dispatch(validityChek())
+        dispatch(validityCheck())
     }
     return (
     <form>
@@ -106,11 +106,23 @@ const Chekout = () => {
                         Доставка
                     </legend>
                     <div className='chekout_delivery'>
-                        <input className ='chekout_input' type="radio"/>
+                        <input 
+                            className ='chekout_input' 
+                            type="radio"
+                            name="pickup"
+                            onChange={e => dispatch(deliveryMethodCheck(e.target.name))}
+                            checked={delivery.get("pickup")}
+                        />
                         Самовывоз со склада (магазина)
                     </div>
                     <div className='chekout_delivery'>
-                        <input className ='chekout_input' type="radio"/>
+                        <input 
+                            className ='chekout_input' 
+                            type="radio"
+                            name="targeted"
+                            onChange={e => dispatch(deliveryMethodCheck(e.target.name))}
+                            checked={delivery.get("targeted")}
+                        />
                         Адресная доставка
                     </div>
                 </fieldset>
@@ -120,11 +132,23 @@ const Chekout = () => {
                         Способ оплаты
                     </legend>
                     <div className='chekout_payment_method'>
-                        <input className ='chekout_input' type="radio" />
+                        <input 
+                            className ='chekout_input' 
+                            type="radio"
+                            name="byCard"
+                            onChange={e => dispatch(paymentMethodCheck(e.target.name))}
+                            checked={payment.get("byCard")}
+                        />
                         Банковская карта
                     </div>
                     <div className='chekout_payment_method'>
-                        <input className ='chekout_input' type="radio" />
+                        <input 
+                            className ='chekout_input' 
+                            type="radio"
+                            name="byCash"
+                            onChange={e => dispatch(paymentMethodCheck(e.target.name))}
+                            checked={payment.get("byCash")}
+                        />
                         Наличный расчет
                     </div>
                 </fieldset>
@@ -237,4 +261,4 @@ const Chekout = () => {
     );
 };
 
-export default Chekout;
+export default Checkout;
