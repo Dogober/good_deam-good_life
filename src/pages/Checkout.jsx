@@ -1,11 +1,12 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import ChekoutModal from '../components/ChekoutModal';
 import { deliveryMethodCheck, formDataBlurHandlerChange, formDataValueChange, paymentMethodCheck, validityCheck } from '../store/reducers/checkoutReducer';
 
 const Checkout = () => {
     const {purchasedItems} = useSelector(state => state.cart)
     const {formData, delivery, payment, validity} = useSelector(state => state.checkout)
     const dispatch = useDispatch()
+    let arrStyles = []
 
     const totalCost = () => {
         let rezult = 0;
@@ -21,12 +22,18 @@ const Checkout = () => {
         )
         return calcTotalNumber
     }
-    const validator = (blurhandler, condition) => {
-        if (!blurhandler && condition && validity === false) {
+    const validator = (field, style) => {
+        if (validity === false && !field.validity) {
+            arrStyles = []
+            arrStyles.push(style, 'input_error')
             return "Обязательное поле"
-        } else if (blurhandler && condition) {
+        } else if (field.blurHandler && !field.validity) {
+            arrStyles = []
+            arrStyles.push(style, 'input_error')
             return "Обязательное поле"
         } else {
+            arrStyles = []
+            arrStyles.push(style)
             return ""
         }
     }
@@ -35,27 +42,26 @@ const Checkout = () => {
         dispatch(validityCheck())
     }
     return (
+        <div>
+            <ChekoutModal/>
     <form>
-        <div className='chekout_title'>
+        <div className='checkout_title'>
             Оформление заказа
         </div>
-        <div className='chekout_container'>
-            <div className='chekout_your_data_container'>
+        <div className='checkout_container'>
+            <div className='checkout_your_data_container'>
                 <fieldset>
                     <legend>
-                        <span className='chekout_step_number'>1</span>
+                        <span className='checkout_step_number'>1</span>
                         Ваши контактные данные
                     </legend>
-                    <div className='chekout_your_data'>
+                    <div className='checkout_your_data'>
                         <div className='data_container_surname'>
                             <div className='data_error'>
-                                {validator(
-                                    formData.get("buyerSurname").blurHandler, 
-                                    formData.get("buyerSurname").value.length < 1
-                                )}
+                                {validator(formData.get("buyerSurname"), 'checkout_input_surname')}
                             </div>
                             <input 
-                                className ='chekout_input_surname' 
+                                className ={arrStyles.join(' ')} 
                                 type="text" 
                                 placeholder='Фамилия'
                                 name='buyerSurname'
@@ -66,13 +72,10 @@ const Checkout = () => {
                         </div>
                         <div className='data_container_name'>
                             <div className='data_error'>
-                                {validator(
-                                    formData.get("buyerName").blurHandler,
-                                    formData.get("buyerName").value.length < 1
-                                )}
+                                {validator(formData.get("buyerName"), 'checkout_input_name')}
                             </div>
                             <input 
-                                className ='chekout_input_name' 
+                                className ={arrStyles.join(' ')} 
                                 type="text" 
                                 placeholder='Имя'
                                 name='buyerName'
@@ -84,13 +87,10 @@ const Checkout = () => {
                     </div>
                     <div className='data_container_phone'>
                         <div className='data_error'>
-                            {validator(
-                                formData.get("buyerPhone").blurHandler, 
-                                formData.get("buyerPhone").value.length < 13
-                            )}
+                            {validator(formData.get("buyerPhone"), 'checkout_input_phone_number')}
                         </div>
                         <input 
-                            className ='chekout_input_phone_number' 
+                            className ={arrStyles.join(' ')} 
                             type="text" 
                             placeholder='Телефон'
                             name='buyerPhone'
@@ -102,71 +102,68 @@ const Checkout = () => {
                 </fieldset>
                 <fieldset>
                     <legend>
-                        <span className='chekout_step_number'>2</span>
+                        <span className='checkout_step_number'>2</span>
                         Доставка
                     </legend>
-                    <div className='chekout_delivery'>
+                    <div className='checkout_delivery'>
                         <input 
-                            className ='chekout_input' 
+                            className ='checkout_input' 
                             type="radio"
                             name="pickup"
                             onChange={e => dispatch(deliveryMethodCheck(e.target.name))}
-                            checked={delivery.get("pickup")}
+                            checked={delivery === "pickup"}
                         />
                         Самовывоз со склада (магазина)
                     </div>
-                    <div className='chekout_delivery'>
+                    <div className='checkout_delivery'>
                         <input 
-                            className ='chekout_input' 
+                            className ='checkout_input' 
                             type="radio"
                             name="targeted"
                             onChange={e => dispatch(deliveryMethodCheck(e.target.name))}
-                            checked={delivery.get("targeted")}
+                            checked={delivery === "targeted"}
                         />
                         Адресная доставка
                     </div>
                 </fieldset>
                 <fieldset>
                     <legend>
-                        <span className='chekout_step_number'>3</span>
+                        <span className='checkout_step_number'>3</span>
                         Способ оплаты
                     </legend>
-                    <div className='chekout_payment_method'>
+                    <div className='checkout_payment_method'>
                         <input 
-                            className ='chekout_input' 
+                            className ='checkout_input' 
                             type="radio"
                             name="byCard"
                             onChange={e => dispatch(paymentMethodCheck(e.target.name))}
-                            checked={payment.get("byCard")}
+                            checked={payment === "byCard"}
                         />
                         Банковская карта
                     </div>
-                    <div className='chekout_payment_method'>
+                    <div className='checkout_payment_method'>
                         <input 
-                            className ='chekout_input' 
+                            className ='checkout_input' 
                             type="radio"
                             name="byCash"
                             onChange={e => dispatch(paymentMethodCheck(e.target.name))}
-                            checked={payment.get("byCash")}
+                            checked={payment === "byCash"}
                         />
                         Наличный расчет
                     </div>
                 </fieldset>
                 <fieldset>
                     <legend>
-                        <span className='chekout_step_number'>4</span>
+                        <span className='checkout_step_number'>4</span>
                         Данные получателя
                     </legend>
-                    <div className='chekout_your_data'>
+                    <div className='checkout_your_data'>
                         <div className='data_container_surname'>
                             <div className='data_error'>
-                                {validator(
-                                    formData.get("receiverSurname").blurHandler, 
-                                    formData.get("receiverSurname").value.length < 1
-                                )}
+                                {validator(formData.get("receiverSurname"), 'checkout_input_surname')}
                             </div>  
                             <input 
-                                className ='chekout_input_surname' 
+                                className ={arrStyles.join(' ')}  
                                 type="text" 
                                 placeholder='Фамилия'
                                 name='receiverSurname'
@@ -177,13 +174,10 @@ const Checkout = () => {
                         </div>
                         <div className='data_container_name'>
                             <div className='data_error'>
-                                {validator(
-                                    formData.get("receiverName").blurHandler, 
-                                    formData.get("receiverName").value.length < 1
-                                )}
+                                {validator(formData.get("receiverName"), 'checkout_input_name')}
                             </div>
                             <input 
-                                className ='chekout_input_name' 
+                                className ={arrStyles.join(' ')}  
                                 type="text" 
                                 placeholder='Имя'
                                 name='receiverName'
@@ -193,16 +187,13 @@ const Checkout = () => {
                             />
                         </div>
                     </div>
-                    <div className='chekout_your_data'>
+                    <div className='checkout_your_data'>
                         <div className='data_container_patronymic'>
                             <div className='data_error'>
-                                {validator(
-                                    formData.get("receiverPatronymic").blurHandler, 
-                                    formData.get("receiverPatronymic").value.length < 1
-                                )}
+                                {validator(formData.get("receiverPatronymic"), 'checkout_input_surname')}
                             </div>
                             <input 
-                                className ='chekout_input_surname' 
+                                className ={arrStyles.join(' ')}  
                                 type="text" 
                                 placeholder='Отчество'
                                 name='receiverPatronymic'
@@ -213,13 +204,10 @@ const Checkout = () => {
                         </div>
                         <div className='data_container_phone'>
                             <div className='data_error'>
-                                {validator(
-                                    formData.get("receiverPhone").blurHandler, 
-                                    formData.get("receiverPhone").value.length < 13
-                                    )}
+                                {validator(formData.get("receiverPhone"), 'checkout_input_phone_number')}
                             </div>
                             <input 
-                                className ='chekout_input_phone_number' 
+                                className ={arrStyles.join(' ')} 
                                 type="text" 
                                 placeholder='Телефон'
                                 name='receiverPhone'
@@ -258,6 +246,7 @@ const Checkout = () => {
             </aside>
         </div>
     </form>
+    </div>
     );
 };
 

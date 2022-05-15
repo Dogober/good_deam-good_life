@@ -1,25 +1,21 @@
 const fieldData = {
     value: "",
-    blurHandler: false
+    blurHandler: false,
+    minLength: 1,
+    validity: false
 }
 const initialState = {
     formData: new Map([
         ["buyerSurname", fieldData],
         ["buyerName", fieldData],
-        ["buyerPhone", fieldData],
+        ["buyerPhone", {...fieldData, minLength: 13}],
         ["receiverSurname", fieldData],
         ["receiverName", fieldData],
         ["receiverPatronymic", fieldData],
-        ["receiverPhone", fieldData],
+        ["receiverPhone", {...fieldData, minLength: 13}],
     ]),
-    delivery: new Map([
-        ["pickup", true],
-        ["targeted", false]
-    ]),
-    payment: new Map([
-        ["byCard", false],
-        ["byCash", true]
-    ]),
+    delivery: "pickup",
+    payment: "byCash",
     validity: null
 }
 const checkoutActionTypes = {
@@ -34,6 +30,11 @@ const updateBlurHandler = (formData, field) => {
     for (let key of formData.keys()) {
         mapCopy.set(key, {...formData.get(key)})
     }
+    if (mapCopy.get(field).value.length < mapCopy.get(field).minLength) {
+        mapCopy.get(field).validity = false
+    } else {
+        mapCopy.get(field).validity = true
+    }
     mapCopy.get(field).blurHandler = true
     return mapCopy
 }
@@ -42,23 +43,19 @@ const updateValue = (formData, field, value) => {
     for (let key of formData.keys()) {
         mapCopy.set(key, {...formData.get(key)})
     }
+    if (mapCopy.get(field).value.length < mapCopy.get(field).minLength) {
+        mapCopy.get(field).validity = false
+    } else {
+        mapCopy.get(field).validity = true
+    }
+    console.log(mapCopy)
     mapCopy.get(field).value = value
     return mapCopy
 }
-const updateServices = (service, method) => {
-    const mapCopy = new Map()
-    for (let key of service.keys()) {
-        if ( key === method) {
-            mapCopy.set(key, true)
-        } else {
-            mapCopy.set(key, false)
-        }
-    }
-    return mapCopy
-}
-const valueCheck = (formData) => {
+const formDataValidity = (formData) => {
+    
     for (let key of formData.keys()) {
-        if (formData.get(key).value === "") {
+        if (formData.get(key).validity !== true) {
             return false
         }
     }
@@ -79,17 +76,17 @@ export const checkoutReducer = (state = initialState, action) => {
         case checkoutActionTypes.DELIVERY_CHECK:
             return {
                 ...state,
-                delivery: updateServices(state.delivery, action.method)
+                delivery: action.method
             }
         case checkoutActionTypes.PAYMENT_CHECK:
             return {
                 ...state,
-                payment: updateServices(state.payment, action.method)
+                payment: action.method
             }           
         case checkoutActionTypes.VALIDITY_CHEK:
             return {
                 ...state,
-                validity: valueCheck(state.formData)
+                validity: formDataValidity(state.formData)
             }
         default:
             return state;

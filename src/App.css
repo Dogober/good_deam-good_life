@@ -276,11 +276,11 @@
 .to_pay_notation_list {
     margin: 10px 0 0 15px;
 }
-.chekout_title {
+.checkout_title {
     margin: 50px 50px 0;
     font-size: 2.3em;
 }
-.chekout_step_number {
+.checkout_step_number {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -293,6 +293,49 @@
     background-color: #707375;
     margin-right: 10px;
 }
+.checkout_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    background: rgba(200, 212, 224, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 1;
+}
+.checkout_modal_active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.checkout_modal_content {
+    padding: 30px;
+    border-radius: 15px;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.checkout_modal_thanks {
+    font-size: 20px;
+    margin: 30px 0;
+}
+.checkout_modal_back_to_home {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: rgb(105, 157, 189);
+    color:rgb(237, 248, 253);
+    font-weight: bold;
+    font-size: 15px;
+    opacity: 0.6;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.checkout_modal_back_to_home:hover {
+    opacity: 1;
+}
 legend {
     display: flex;
     align-items: center;
@@ -301,24 +344,24 @@ legend {
 fieldset {
     margin: 20px 0;
 }
-.chekout_delivery {
+.checkout_delivery {
     display: flex;
     align-items: center;
     font-size: 16px;
     margin: 10px 0;
 }
-.chekout_payment_method {
+.checkout_payment_method {
     display: flex;
     align-items: center;
     font-size: 16px;
     margin: 10px 0;   
 }
-.chekout_container {
+.checkout_container {
     display: flex;
     padding: 35px 50px;
     margin-left: 30px;
 }
-.chekout_your_data {
+.checkout_your_data {
     display: flex;
     justify-content: space-between;
 }
@@ -356,16 +399,12 @@ input[type="text"]{
     height: 40px;
     border-radius: 4px;
     outline: none;
-    border: 1px solid rgb(224, 224, 224);
     padding: 10px;
 }
 input[type="radio"] {
     margin-right: 10px;
     width: 20px;
     height: 20px;
-}
-input[type="text"]:hover {
-    border: 1px solid rgb(182, 182, 182);
 }
 input[type="text"]:focus {
     outline: 2px solid rgba(139, 197, 247, 0.384);
@@ -374,17 +413,35 @@ input[type="text"]:focus {
     transition-timing-function: cubic-bezier(0.4, 0, 0.47, 0.71);
     transition-delay: 0s;
 }
-.chekout_input_name {
+.checkout_input_name {
     margin: 10px 0 20px 0;
+    border: 1px solid rgb(224, 224, 224);
 }
-.chekout_input_surname {
+.checkout_input_name:hover {
+    border: 1px solid rgb(182, 182, 182);
+}
+.checkout_input_surname {
     margin: 10px 20px 10px 0;
+    border: 1px solid rgb(224, 224, 224);
 }
-.chekout_input_phone_number {
+.checkout_input_surname:hover {
+    border: 1px solid rgb(182, 182, 182);
+}
+.checkout_input_phone_number {
     margin: 10px 0;
-    border: 1px solid rgb(175, 175, 175);
+    border: 1px solid rgb(224, 224, 224);
 }
-.chekout_your_data_container {
+.checkout_input_phone_number:hover {
+    border: 1px solid rgb(182, 182, 182);
+}
+.input_error {
+    border: none;
+    border: 1px solid rgb(255, 115, 115)
+}
+.input_error:hover {
+    border: 1px solid rgb(255, 115, 115)
+}
+.checkout_your_data_container {
     width: 100%;
 }
 .mattress_options {
