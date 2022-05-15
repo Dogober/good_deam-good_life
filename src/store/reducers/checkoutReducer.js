@@ -25,35 +25,33 @@ const checkoutActionTypes = {
     PAYMENT_CHECK: 'PAYMENT_CHECK',
     VALIDITY_CHEK: 'VALIDITY_CHEK'
 }
-const updateBlurHandler = (formData, field) => {
-    const mapCopy = new Map()
+const copyFormData = (formData, copy) => {
     for (let key of formData.keys()) {
-        mapCopy.set(key, {...formData.get(key)})
+        copy.set(key, {...formData.get(key)})
     }
-    if (mapCopy.get(field).value.length < mapCopy.get(field).minLength) {
-        mapCopy.get(field).validity = false
+}
+const updateValidity = (copy, field) => {
+    if (copy.get(field).value.length < copy.get(field).minLength) {
+        copy.get(field).validity = false
     } else {
-        mapCopy.get(field).validity = true
+        copy.get(field).validity = true
     }
-    mapCopy.get(field).blurHandler = true
-    return mapCopy
+}
+const updateBlurHandler = (formData, field) => {
+    const copy = new Map()
+    copyFormData(formData, copy)
+    copy.get(field).blurHandler = true
+    updateValidity(copy, field)
+    return copy
 }
 const updateValue = (formData, field, value) => {
-    const mapCopy = new Map()
-    for (let key of formData.keys()) {
-        mapCopy.set(key, {...formData.get(key)})
-    }
-    if (mapCopy.get(field).value.length < mapCopy.get(field).minLength) {
-        mapCopy.get(field).validity = false
-    } else {
-        mapCopy.get(field).validity = true
-    }
-    console.log(mapCopy)
-    mapCopy.get(field).value = value
-    return mapCopy
+    const copy = new Map()
+    copyFormData(formData, copy)
+    copy.get(field).value = value
+    updateValidity(copy, field)
+    return copy
 }
 const formDataValidity = (formData) => {
-    
     for (let key of formData.keys()) {
         if (formData.get(key).validity !== true) {
             return false

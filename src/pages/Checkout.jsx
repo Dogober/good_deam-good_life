@@ -6,7 +6,7 @@ const Checkout = () => {
     const {purchasedItems} = useSelector(state => state.cart)
     const {formData, delivery, payment, validity} = useSelector(state => state.checkout)
     const dispatch = useDispatch()
-    let arrStyles = []
+    let formStyles = []
 
     const totalCost = () => {
         let rezult = 0;
@@ -24,16 +24,16 @@ const Checkout = () => {
     }
     const validator = (field, style) => {
         if (validity === false && !field.validity) {
-            arrStyles = []
-            arrStyles.push(style, 'input_error')
+            formStyles = []
+            formStyles.push(style, 'input_error')
             return "Обязательное поле"
         } else if (field.blurHandler && !field.validity) {
-            arrStyles = []
-            arrStyles.push(style, 'input_error')
+            formStyles = []
+            formStyles.push(style, 'input_error')
             return "Обязательное поле"
         } else {
-            arrStyles = []
-            arrStyles.push(style)
+            formStyles = []
+            formStyles.push(style)
             return ""
         }
     }
@@ -61,7 +61,7 @@ const Checkout = () => {
                                 {validator(formData.get("buyerSurname"), 'checkout_input_surname')}
                             </div>
                             <input 
-                                className ={arrStyles.join(' ')} 
+                                className ={formStyles.join(' ')} 
                                 type="text" 
                                 placeholder='Фамилия'
                                 name='buyerSurname'
@@ -75,7 +75,7 @@ const Checkout = () => {
                                 {validator(formData.get("buyerName"), 'checkout_input_name')}
                             </div>
                             <input 
-                                className ={arrStyles.join(' ')} 
+                                className ={formStyles.join(' ')} 
                                 type="text" 
                                 placeholder='Имя'
                                 name='buyerName'
@@ -90,7 +90,7 @@ const Checkout = () => {
                             {validator(formData.get("buyerPhone"), 'checkout_input_phone_number')}
                         </div>
                         <input 
-                            className ={arrStyles.join(' ')} 
+                            className ={formStyles.join(' ')} 
                             type="text" 
                             placeholder='Телефон'
                             name='buyerPhone'
@@ -163,7 +163,7 @@ const Checkout = () => {
                                 {validator(formData.get("receiverSurname"), 'checkout_input_surname')}
                             </div>  
                             <input 
-                                className ={arrStyles.join(' ')}  
+                                className ={formStyles.join(' ')}  
                                 type="text" 
                                 placeholder='Фамилия'
                                 name='receiverSurname'
@@ -177,7 +177,7 @@ const Checkout = () => {
                                 {validator(formData.get("receiverName"), 'checkout_input_name')}
                             </div>
                             <input 
-                                className ={arrStyles.join(' ')}  
+                                className ={formStyles.join(' ')}  
                                 type="text" 
                                 placeholder='Имя'
                                 name='receiverName'
@@ -193,7 +193,7 @@ const Checkout = () => {
                                 {validator(formData.get("receiverPatronymic"), 'checkout_input_surname')}
                             </div>
                             <input 
-                                className ={arrStyles.join(' ')}  
+                                className ={formStyles.join(' ')}  
                                 type="text" 
                                 placeholder='Отчество'
                                 name='receiverPatronymic'
@@ -207,7 +207,7 @@ const Checkout = () => {
                                 {validator(formData.get("receiverPhone"), 'checkout_input_phone_number')}
                             </div>
                             <input 
-                                className ={arrStyles.join(' ')} 
+                                className ={formStyles.join(' ')} 
                                 type="text" 
                                 placeholder='Телефон'
                                 name='receiverPhone'
