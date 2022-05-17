@@ -377,7 +377,7 @@ fieldset {
     flex-direction: column;
     margin-top: 5px;
 }
-.data_container_patronymic {
+.data_container_email {
     display: flex;
     width: 100%;
     flex-direction: column;

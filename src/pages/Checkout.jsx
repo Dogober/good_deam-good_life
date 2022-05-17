@@ -3,25 +3,11 @@ import ChekoutModal from '../components/ChekoutModal';
 import { deliveryMethodCheck, formDataBlurHandlerChange, formDataValueChange, paymentMethodCheck, validityCheck } from '../store/reducers/checkoutReducer';
 
 const Checkout = () => {
-    const {purchasedItems} = useSelector(state => state.cart)
+    const {purchasedItemsCost, numberPurchasedItems} = useSelector(state => state.cart)
     const {formData, delivery, payment, validity} = useSelector(state => state.checkout)
     const dispatch = useDispatch()
     let formStyles = []
 
-    const totalCost = () => {
-        let rezult = 0;
-        const calcTotalCost = purchasedItems.reduce((firstItem, currentItem) => 
-            firstItem + currentItem.purchasedItem.price * currentItem.number, rezult
-        )
-        return calcTotalCost
-    }
-    const totalItemsNumberInCart = () => {
-        let rezult = 0;
-        const calcTotalNumber = purchasedItems.reduce((firstItem, currentItem) => 
-            firstItem + currentItem.number, rezult
-        )
-        return calcTotalNumber
-    }
     const validator = (field, style) => {
         if (validity === false && !field.validity) {
             formStyles = []
@@ -188,16 +174,16 @@ const Checkout = () => {
                         </div>
                     </div>
                     <div className='checkout_your_data'>
-                        <div className='data_container_patronymic'>
+                        <div className='data_container_email'>
                             <div className='data_error'>
-                                {validator(formData.get("receiverPatronymic"), 'checkout_input_surname')}
+                                {validator(formData.get("receiverEmail"), 'checkout_input_surname')}
                             </div>
                             <input 
                                 className ={formStyles.join(' ')}  
                                 type="text" 
-                                placeholder='Отчество'
-                                name='receiverPatronymic'
-                                value={formData.get("receiverPatronymic").value}
+                                placeholder='@Email'
+                                name='receiverEmail'
+                                value={formData.get("receiverEmail").value}
                                 onBlur={(e) => dispatch(formDataBlurHandlerChange(e.target.name))}
                                 onChange={(e) => dispatch(formDataValueChange(e.target.name, e.target.value))}
                             />
@@ -222,8 +208,8 @@ const Checkout = () => {
             <aside className='to_pay_container'>
                 <div className='to_pay_total'>Итого</div>
                 <div className='to_pay_total_calc'>
-                    <div>{totalItemsNumberInCart()} ед. на сумму</div>
-                    <div>{totalCost()} ₴</div>
+                    <div>{numberPurchasedItems} ед. на сумму</div>
+                    <div>{purchasedItemsCost} ₴</div>
                 </div>
                 <div className='to_pay_total_calc'>
                     <div>Доставка при <br/> покупке от 8000 ₴</div>
@@ -231,7 +217,7 @@ const Checkout = () => {
                 </div>
                 <div className='to_pay_calc'>
                     <div>К оплате</div>
-                    <div className='to_pay_total'>{totalCost()} ₴</div>
+                    <div className='to_pay_total'>{purchasedItemsCost} ₴</div>
                 </div>
                 <div className='to_pay_confirm_container'>
                     <button onClick={e => checkForm(e)} className='to_pay_confirm'>Заказ подтверждаю</button>

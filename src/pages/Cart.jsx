@@ -4,15 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import ItemInCart from '../components/ItemInCart';
 
 const Cart = () => {
-    const purchasedItems = useSelector(state => state.cart.purchasedItems)
+    const {purchasedItems, purchasedItemsCost} = useSelector(state => state.cart)
     const route = useNavigate()
-    const totalCost = () => {
-        let rezult = 0;
-        const calcTotalCost = purchasedItems.reduce((firstItem, currentItem) => 
-            firstItem + currentItem.purchasedItem.price * currentItem.number, rezult
-        )
-        return calcTotalCost
-    }
 
     const itemesInCart = () => {
         if (purchasedItems != false) {
@@ -24,7 +17,7 @@ const Cart = () => {
                             )}
                         </div>
                     <div className='total_cost'>
-                        {totalCost()} ₴
+                        {purchasedItemsCost} ₴
                         <div 
                             className='checkout'
                             onClick={() => route('/checkout')}

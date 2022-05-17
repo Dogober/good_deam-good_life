@@ -8,14 +8,7 @@ const Navbar = () => {
     const route = useNavigate()
     const dispatch = useDispatch()
     const homePageIsLoading = useSelector(state => state.mattressList.homePageIsLoading)
-    const purchasedItems = useSelector(state => state.cart.purchasedItems)
-    const totalItemsNumberInCart = () => {
-        let rezult = 0;
-        const calcTotalNumber = purchasedItems.reduce((firstItem, currentItem) => 
-            firstItem + currentItem.number, rezult
-        )
-        return calcTotalNumber
-    }
+    const {numberPurchasedItems} = useSelector(state => state.cart)
 
     const home = () => {
         if (!homePageIsLoading) {
@@ -45,7 +38,7 @@ const Navbar = () => {
                 onClick={() => route('/cart')}
             />
             <div className='number_of_goods'>
-                {totalItemsNumberInCart()}
+                {numberPurchasedItems}
             </div>
         </div>
     );

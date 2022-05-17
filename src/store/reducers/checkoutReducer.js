@@ -1,18 +1,17 @@
 const fieldData = {
     value: "",
     blurHandler: false,
-    minLength: 1,
     validity: false
 }
 const initialState = {
     formData: new Map([
         ["buyerSurname", fieldData],
         ["buyerName", fieldData],
-        ["buyerPhone", {...fieldData, minLength: 13}],
+        ["buyerPhone", fieldData],
         ["receiverSurname", fieldData],
         ["receiverName", fieldData],
-        ["receiverPatronymic", fieldData],
-        ["receiverPhone", {...fieldData, minLength: 13}],
+        ["receiverEmail", fieldData],
+        ["receiverPhone", fieldData],
     ]),
     delivery: "pickup",
     payment: "byCash",
@@ -30,25 +29,37 @@ const copyFormData = (formData, copy) => {
         copy.set(key, {...formData.get(key)})
     }
 }
-const updateValidity = (copy, field) => {
-    if (copy.get(field).value.length < copy.get(field).minLength) {
-        copy.get(field).validity = false
+const updateValidity = (field, fieldData) => {
+    const initialsRegExp = /[А-Я][а-я]+/g
+    const phoneRegExp = /\+\d{12}/g
+    const regExpMap = new Map ([
+        ["buyerSurname", initialsRegExp],
+        ["buyerName", initialsRegExp],
+        ["buyerPhone", phoneRegExp],
+        ["receiverSurname", initialsRegExp],
+        ["receiverName", initialsRegExp],
+        ["receiverEmail", /([a-zA-Z0-9]\.?){5,29}\w@([a-z]+\.[a-z]+)/g],
+        ["receiverPhone", phoneRegExp],
+    ])
+    const validityAr = fieldData.value.match(regExpMap.get(field))
+    if (validityAr && validityAr[0] === fieldData.value) {
+        fieldData.validity = true
     } else {
-        copy.get(field).validity = true
+        fieldData.validity = false
     }
 }
 const updateBlurHandler = (formData, field) => {
     const copy = new Map()
     copyFormData(formData, copy)
     copy.get(field).blurHandler = true
-    updateValidity(copy, field)
+    updateValidity(field, copy.get(field))
     return copy
 }
 const updateValue = (formData, field, value) => {
     const copy = new Map()
     copyFormData(formData, copy)
     copy.get(field).value = value
-    updateValidity(copy, field)
+    updateValidity(field, copy.get(field))
     return copy
 }
 const formDataValidity = (formData) => {

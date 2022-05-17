@@ -1,5 +1,7 @@
 const initialState = {
-    purchasedItems: []
+    purchasedItems: [],
+    numberPurchasedItems: null,
+    purchasedItemsCost: null
 }
 
 const cartActionTypes = {
@@ -18,7 +20,18 @@ const numberChange = (ar, id, changes) => {
         }
     }
 }
-
+const numberPurchasedItemsCalc = (purchasedItems) => {
+    let rezult = 0;
+    return purchasedItems.reduce((firstItem, currentItem) => 
+    firstItem + currentItem.number, rezult
+    )
+}
+const purchasedItemsCostCalc = (purchasedItems) => {
+    let rezult = 0;
+    return purchasedItems.reduce((firstItem, currentItem) => 
+    firstItem + currentItem.purchasedItem.price * currentItem.number, rezult
+    )
+}
 export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case cartActionTypes.ADD_TO_CART:
@@ -30,12 +43,16 @@ export const cartReducer = (state = initialState, action) => {
                         purchasedItem: action.payload,
                         number: 1
                     }
-                ]
+                ],
+                numberPurchasedItems: state.numberPurchasedItems + 1,
+                purchasedItemsCost: state.purchasedItemsCost + action.payload.price
             }
         case cartActionTypes.CHANGE_NUMBER_PURCHASED_ITEM:
             return {
                 ...state,
-                purchasedItems: [...numberChange(state.purchasedItems, action.id, action.changes)]
+                purchasedItems: [...numberChange(state.purchasedItems, action.id, action.changes)],
+                numberPurchasedItems: numberPurchasedItemsCalc(state.purchasedItems),
+                purchasedItemsCost: purchasedItemsCostCalc(state.purchasedItems)
             }
         case cartActionTypes.DELETE_PURCHASED_ITEM:
             return {
