@@ -41,7 +41,7 @@ const renderingSelectedMattressByCondition = () => {
                             <div>
                                 {selectedMattress.price} ₴
                             </div>
-                            {purchasedItems.find(item => item.purchasedItem.id === selectedMattress.id)
+                            {purchasedItems.find(item => item.mattress.id === selectedMattress.id)
                                 ?<div 
                                     className='already_bought'
                                     onClick={() => route('/cart')}

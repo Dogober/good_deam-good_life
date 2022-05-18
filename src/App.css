@@ -105,6 +105,7 @@
     align-items: center;
     font-size: 20px;
     color: rgb(155, 155, 155);
+    margin-top: 2px;
 }
 .empty_cart {
     width: 250px;

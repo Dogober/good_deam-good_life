@@ -13,7 +13,7 @@ const Cart = () => {
                 <div className='item_form'>
                     <div>
                         {purchasedItems.map(item =>
-                            <ItemInCart key={item.purchasedItem.id} item={item}/>
+                            <ItemInCart key={item.mattress.id} item={item}/>
                             )}
                         </div>
                     <div className='total_cost'>

@@ -8,7 +8,7 @@ const Navbar = () => {
     const route = useNavigate()
     const dispatch = useDispatch()
     const homePageIsLoading = useSelector(state => state.mattressList.homePageIsLoading)
-    const {numberPurchasedItems} = useSelector(state => state.cart)
+    const {purchasedItemsNumber} = useSelector(state => state.cart)
 
     const home = () => {
         if (!homePageIsLoading) {
@@ -38,7 +38,7 @@ const Navbar = () => {
                 onClick={() => route('/cart')}
             />
             <div className='number_of_goods'>
-                {numberPurchasedItems}
+                {!purchasedItemsNumber ?null :purchasedItemsNumber}
             </div>
         </div>
     );

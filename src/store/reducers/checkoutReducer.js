@@ -22,7 +22,8 @@ const checkoutActionTypes = {
     FORM_DATA_VALUE_CHANGE: 'FORM_DATA_VALUE_CHANGE',
     DELIVERY_CHECK: 'DELIVERY_CHECK',
     PAYMENT_CHECK: 'PAYMENT_CHECK',
-    VALIDITY_CHEK: 'VALIDITY_CHEK'
+    VALIDITY_CHEK: 'VALIDITY_CHEK',
+    FORM_CLEAR: 'FORM_CLEAR'
 }
 const copyFormData = (formData, copy) => {
     for (let key of formData.keys()) {
@@ -95,7 +96,23 @@ export const checkoutReducer = (state = initialState, action) => {
         case checkoutActionTypes.VALIDITY_CHEK:
             return {
                 ...state,
-                validity: formDataValidity(state.formData)
+                validity: formDataValidity(state.formData),
+            }
+        case checkoutActionTypes.FORM_CLEAR:
+            return {
+                ...state,
+                formData: new Map([
+                    ["buyerSurname", fieldData],
+                    ["buyerName", fieldData],
+                    ["buyerPhone", fieldData],
+                    ["receiverSurname", fieldData],
+                    ["receiverName", fieldData],
+                    ["receiverEmail", fieldData],
+                    ["receiverPhone", fieldData],
+                ]),
+                delivery: "pickup",
+                payment: "byCash",
+                validity: null
             }
         default:
             return state;
@@ -120,3 +137,4 @@ export const paymentMethodCheck = (method) => ({
     method
 })
 export const validityCheck = () => ({type: checkoutActionTypes.VALIDITY_CHEK})
+export const formClear = () => ({type: checkoutActionTypes.FORM_CLEAR})

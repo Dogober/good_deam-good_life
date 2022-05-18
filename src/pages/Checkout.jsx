@@ -1,11 +1,19 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ChekoutModal from '../components/ChekoutModal';
 import { deliveryMethodCheck, formDataBlurHandlerChange, formDataValueChange, paymentMethodCheck, validityCheck } from '../store/reducers/checkoutReducer';
 
 const Checkout = () => {
-    const {purchasedItemsCost, numberPurchasedItems} = useSelector(state => state.cart)
+    const {purchasedItemsCost, purchasedItemsNumber} = useSelector(state => state.cart)
     const {formData, delivery, payment, validity} = useSelector(state => state.checkout)
     const dispatch = useDispatch()
+    const route = useNavigate()
+    useEffect(() => {
+        if (!purchasedItemsNumber) { 
+            route('/home')
+        }
+    }, [])
     let formStyles = []
 
     const validator = (field, style) => {
@@ -26,6 +34,7 @@ const Checkout = () => {
     const checkForm = (e) => {
         e.preventDefault()
         dispatch(validityCheck())
+        console.log(validity)
     }
     return (
         <div>
@@ -208,7 +217,7 @@ const Checkout = () => {
             <aside className='to_pay_container'>
                 <div className='to_pay_total'>Итого</div>
                 <div className='to_pay_total_calc'>
-                    <div>{numberPurchasedItems} ед. на сумму</div>
+                    <div>{purchasedItemsNumber} ед. на сумму</div>
                     <div>{purchasedItemsCost} ₴</div>
                 </div>
                 <div className='to_pay_total_calc'>

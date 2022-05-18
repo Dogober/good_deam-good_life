@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import MattressForm from '../components/MattressForm';
-import '../App.css'
 import Filters from '../components/Filters';
 import { Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
