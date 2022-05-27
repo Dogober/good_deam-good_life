@@ -56,13 +56,12 @@ export const cartReducer = (state = initialState, action) => {
                 purchasedItemsCost: purchasedItemsCostCalc(state.purchasedItems)
             }
         case cartActionTypes.DELETE_PURCHASED_ITEM:
-            const deletedPurchasedItem = state.purchasedItems.filter(item => 
-                item.mattress.id === action.mattress.id).pop()
+            const {number} = state.purchasedItems.filter(item => item.mattress.id === action.mattress.id).pop()
             return {
                 ...state,
                 purchasedItems: state.purchasedItems.filter(item => item.mattress.id !== action.mattress.id),
-                purchasedItemsNumber: state.purchasedItemsNumber - deletedPurchasedItem.number,
-                purchasedItemsCost: state.purchasedItemsCost - action.mattress.price * deletedPurchasedItem.number
+                purchasedItemsNumber: state.purchasedItemsNumber - number,
+                purchasedItemsCost: state.purchasedItemsCost - action.mattress.price * number
             }
         case cartActionTypes.CLEAR_CART:
             return {

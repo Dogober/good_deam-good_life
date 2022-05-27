@@ -24,9 +24,9 @@ const selectedFilters = (state, action) => {
 
 const filteredContainer = (mattresses, producerFilter, sizeFilter, sorting) => {
     let filterMattresses = filteredMattresses(mattresses, producerFilter, sizeFilter)
-    if ( sorting == "ascending" ) {
+    if ( sorting === "ascending" ) {
         return filterMattresses.sort((a, b) => a.price - b.price)
-    } else if (sorting == "descending" ) {
+    } else if (sorting === "descending" ) {
         return filterMattresses.sort((a, b) => b.price - a.price)
     } else {
         return filterMattresses
@@ -34,11 +34,11 @@ const filteredContainer = (mattresses, producerFilter, sizeFilter, sorting) => {
 }
 
 const filteredMattresses = (mattresses, producerFilter, sizeFilter) => {
-    if (sizeFilter.length == 0 && producerFilter.length == 0) {
+    if (!sizeFilter.length && !producerFilter.length) {
         return mattresses
-    } else if (sizeFilter.length == 0) {
+    } else if (!sizeFilter.length) {
         return mattresses.filter(el => producerFilter.includes(el.producer))
-    } else if (producerFilter.length == 0) {
+    } else if (!producerFilter.length) {
         return mattresses.filter(el => sizeFilter.includes(el.size))
     } else {
         return mattresses.filter(el => 

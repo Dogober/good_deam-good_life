@@ -17,7 +17,7 @@ const initialState = {
     payment: "byCash",
     validity: null
 }
-const checkoutActionTypes = {
+export const checkoutActionTypes = {
     FORM_DATA_BLUR_CHANGE: 'FORM_DATA_BLUR_CHANGE',
     FORM_DATA_VALUE_CHANGE: 'FORM_DATA_VALUE_CHANGE',
     DELIVERY_CHECK: 'DELIVERY_CHECK',
@@ -64,8 +64,10 @@ const updateValue = (formData, field, value) => {
     return copy
 }
 const formDataValidity = (formData) => {
-    for (let key of formData.keys()) {
-        if (formData.get(key).validity !== true) {
+    const copy = new Map()
+    copyFormData(formData, copy)
+    for (let key of copy.keys()) {
+        if (copy.get(key).validity !== true) {
             return false
         }
     }
