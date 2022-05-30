@@ -2,16 +2,16 @@ import { addToCart, cartReducer } from "../../reducers/cartReducer"
 
 test('addToCart', () => {
     const mattress = {
-        id: 1,
-        producer: "Good dream",
-        load: 100,
-        img: "/mattress_№1.png",
-        type: "беспружинный",
-        price: 8500,
-        size : "800x2000",
-        heigh: 15,
-        rigidity: "мягкий",
-        body : "Беспружинный матрас обеспечит комфортный сон, а за счет долговечного наполнения срок службы увеличивается в разы."
+        "id": 1,
+        "producer": "Good dream",
+        "load": 100,
+        "img": "/mattress_№1.png",
+        "type": "беспружинный",
+        "price": 8500,
+        "size" : "800x2000",
+        "heigh": 15,
+        "rigidity": "мягкий",
+        "body" : "Беспружинный матрас обеспечит комфортный сон, а за счет долговечного наполнения срок службы увеличивается в разы."
     }
     expect(cartReducer({
         purchasedItems: [],
