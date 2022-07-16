@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ChekoutModal from '../components/ChekoutModal';
-import FormInput from '../components/FormInput';
-import FormDeliveryInput from '../components/FormDeliveryInput';
-import FormPaymentInput from '../components/FormPaymentInput';
+import FormInput from '../components/UI/FormInput';
+import FormDeliveryInput from '../components/UI/FormDeliveryInput';
+import FormPaymentInput from '../components/UI/FormPaymentInput';
 import FormLegend from '../components/FormLegend';
 import FormAside from '../components/FormAside';
 

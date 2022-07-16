@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { formDataBlurHandlerChange, formDataValueChange } from '../store/reducers/checkoutReducer';
+import { formDataBlurHandlerChange, formDataValueChange } from '../../store/reducers/checkoutReducer';
 
 const FormInput = ({containerStyle, inputStyle, name, placeholder}) => {
     const {formData, validity} = useSelector(state => state.checkout)

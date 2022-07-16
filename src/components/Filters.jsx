@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css'
-import ProducerFilter from './ProducerFilter';
-import SizeFilter from './SizeFilter';
+import ProducerFilter from './UI/ProducerFilter';
+import SizeFilter from './UI/SizeFilter';
 
 const Filters = () => {
     return (

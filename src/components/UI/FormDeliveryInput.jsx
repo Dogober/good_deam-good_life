@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deliveryMethodCheck } from '../store/reducers/checkoutReducer';
+import { deliveryMethodCheck } from '../../store/reducers/checkoutReducer';
 
 const FormDeliveryInput = ({name, children}) => {
     const {delivery} = useSelector(state => state.checkout)

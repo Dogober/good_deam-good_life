@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { paymentMethodCheck } from '../store/reducers/checkoutReducer';
+import { paymentMethodCheck } from '../../store/reducers/checkoutReducer';
 
 const FormPaymentInput = ({name, children}) => {
     const {payment} = useSelector(state => state.checkout)

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Checkbox } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilteredMattressesOnProducer } from '../async-functions/GetMattresses';
+import { getFilteredMattressesOnProducer } from '../../async-functions/GetMattresses';
 
 const ProducerFilter = ({producer}) => {
     const {producerFilter} = useSelector(state => state.mattressList)
