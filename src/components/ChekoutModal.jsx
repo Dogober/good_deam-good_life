@@ -25,7 +25,8 @@ const ChekoutModal = () => {
                 <button
                     className='checkout_modal_back_to_home'
                     onClick={() => clearFormAndRouteToHome()}
-                >Вернуться к товарам
+                >
+                    Вернуться к товарам
                 </button>
             </div>
         </div>
