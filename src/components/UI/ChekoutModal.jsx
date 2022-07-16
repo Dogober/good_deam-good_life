@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { clearCart } from '../store/reducers/cartReducer';
-import { formClear } from '../store/reducers/checkoutReducer';
+import { clearCart } from '../../store/reducers/cartReducer';
+import { formClear } from '../../store/reducers/checkoutReducer';
 
 const ChekoutModal = () => {
     const {validity} = useSelector(state => state.checkout)

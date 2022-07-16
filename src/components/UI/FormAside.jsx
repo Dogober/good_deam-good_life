@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { validityCheck } from '../store/reducers/checkoutReducer';
+import { validityCheck } from '../../store/reducers/checkoutReducer';
 
 const FormAside = () => {
     const {purchasedItemsCost, purchasedItemsNumber} = useSelector(state => state.cart)
