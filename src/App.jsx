@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { Layout } from 'antd';
 import AppRouter from './components/AppRouter';
+import "antd/dist/antd.css";
 
 const App = () => {
 
