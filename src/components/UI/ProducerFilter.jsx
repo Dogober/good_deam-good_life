@@ -9,17 +9,10 @@ const ProducerFilter = ({producer}) => {
     const filteredOnProducer = (currentFilter) => {
         dispatch(getFilteredMattressesOnProducer(currentFilter))
     }
-    function isProducerFilterChecked (currentFilter) {
-        if (producerFilter.includes(currentFilter)) {
-            return true
-        } else {
-            return false
-        }
-    }
     return (
         <Checkbox 
             onChange={(e) => filteredOnProducer(e.target.id)} 
-            checked={isProducerFilterChecked(producer)}
+            checked={producerFilter.includes(producer) ?true :false}
             id={producer}
         > 
             {producer}

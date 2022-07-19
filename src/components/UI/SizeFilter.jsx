@@ -9,17 +9,10 @@ const SizeFilter = ({size}) => {
     const filteredOnSize = (currentFilter) => {
         dispatch(getFilteredMattressesOnSize(currentFilter))
     }
-    function isSizeFilterChecked (currentFilter) {
-        if (sizeFilter.includes(currentFilter)) {
-            return true
-        } else {
-            return false
-        }
-    }    
     return (
         <Checkbox
             onChange={(e) => filteredOnSize(e.target.id)} 
-            checked={isSizeFilterChecked(size)}
+            checked={sizeFilter.includes(size) ?true :false}
             id={size}
         > 
             {size}

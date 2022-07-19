@@ -48,7 +48,7 @@ const Checkout = () => {
                         </fieldset>
                         <fieldset>
                             <FormLegend item={2}> Доставка </FormLegend>
-                            <FormDeliveryInput name={"pickup"}> Самовывоз со склада (магазина) </FormDeliveryInput>
+                            <FormDeliveryInput name={"pickup"}> Самовывоз со склада/магазина </FormDeliveryInput>
                             <FormDeliveryInput name={"targeted"}> Адресная доставка </FormDeliveryInput>
                         </fieldset>
                         <fieldset>

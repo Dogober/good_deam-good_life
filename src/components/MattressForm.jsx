@@ -9,8 +9,8 @@ const MattressForm = ({props}) => {
             onClick={() => route(`/home/${props.id}`)}
         >
             <div className='mattress_form'>
-                <div>
-                    <img className='img_container' src={props.img}/>
+                <div className='mattress_img_container'>
+                    <img className='mattress_img' src={props.img}/>
                 </div>
                 <div>
                     <div className='mattress_options'>Матрас №{props.id}</div>

@@ -16,31 +16,27 @@ const MattressList = () => {
     const sortByPrice = (selectedSort) => {
         dispatch(getFilteredMattressesOnPrice(selectedSort))
     }
-    const selectedSort = () => {
-        if (sorting === null) {
-            return "sortByPrice"
-        } else {
-            return sorting
-        }
-    }
 
     return (
         <div className='content'>
                 <Filters/>
-            <div className='mattress_list'>
-                <div>
-                <Select
-                    onChange={value => sortByPrice(`${value}`)}
-                    value={selectedSort()}
-                >
-                    <Select.Option disabled value="sortByPrice">Сортировать по цене</Select.Option>
-                    <Select.Option value="ascending">От дешевых к дорогим</Select.Option>
-                    <Select.Option value="descending">От дорогих к дешевым</Select.Option>
-                </Select>
+            <div className='mattress_list_container'>
+                <div className='mattress_list'>
+                    <div>
+                    <Select
+                        onChange={value => sortByPrice(`${value}`)}
+                        value={sorting === null ?"sortByPrice" :sorting}
+                    >
+                        <Select.Option disabled value="sortByPrice">Сортировать по цене</Select.Option>
+                        <Select.Option value="ascending">От дешевых к дорогим</Select.Option>
+                        <Select.Option value="descending">От дорогих к дешевым</Select.Option>
+                    </Select>
+                    </div>
+                        {mattresses.map(mattress => 
+                            <MattressForm key={mattress.id} props={mattress}/>
+                            )
+                        }
                 </div>
-                {mattresses.map(mattress => 
-                    <MattressForm key={mattress.id} props={mattress}/>
-            )}
             </div>
         </div>
     );
