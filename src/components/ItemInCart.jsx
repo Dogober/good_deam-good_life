@@ -9,7 +9,9 @@ const ItemInCart = ({item}) => {
         <div className='item_container'>
             <div className='item_body'>
                 <img className='item_img' src={item.mattress.img}/>
-                <div>{item.mattress.producer}. {item.mattress.size}. {item.mattress.body}</div>
+                <div className='item_description'>
+                    {item.mattress.producer}. {item.mattress.size}. {item.mattress.body}
+                </div>
                 <div>
                     <div 
                         className='delete_item_in_cart'
