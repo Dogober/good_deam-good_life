@@ -19,7 +19,6 @@
     margin: 10px 0 10px 0;
     border: 2px solid rgba(101, 145, 175, 0);
     border-radius: 2px;
-
 }
 .mattress_form_container:hover {
     border: 2px solid rgba(122, 165, 194, 0.3);
@@ -52,16 +51,25 @@
     padding: 30px;
     background-color: rgba(170, 201, 221, 0.3);
 }
-@media screen and (max-width: 700px), (orientation: portrait)  {
+@media screen and (max-width: 700px) {
     .filters {
-        min-width: 150px;
+        max-width: max-content;
         height: max-content;
-        margin: 0 25px 0 25px;
-        padding: 15px;
+        margin: 0 30px 10px;
+        padding: 30px;
         background-color: rgba(170, 201, 221, 0.3);
     }    
+    .content{
+        display: flex;
+        flex-direction: column;
+    }
+    .mattress_list_container {
+        margin: 10px 30px;
+    }    
+    .mattress_form_container {
+        margin: 10px 30px 0 0;
+    }
 }
-
 .mattress_list_container {
     display: flex;
     position: relative;
@@ -71,6 +79,7 @@
 }
 .footer {
     height: 25vh;
+    flex: 1 1 auto;
     background-color: rgb(174, 197, 212);
 }
 
@@ -93,7 +102,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: rgb(174, 197, 212);
-    padding: 18px 50px;
+    padding: 10px;
 }
 .route_container{
     display: flex;

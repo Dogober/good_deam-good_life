@@ -20,7 +20,7 @@ const MattressForm = ({props}) => {
                     <div className='mattress_options'>Высота: {props.heigh} см</div>
                     <div className='mattress_options'>Нагрузка на 1 сп. место: {props.load} кг</div>
                     <div className='mattress_options'>Мягкость: {props.rigidity}</div>
-                    <div className='mattress_options'>{props.body}</div>
+                    <div className='mattress_options bodyoption'>{props.body}</div>
                 </div>
             </div>
             <div className='price'>
