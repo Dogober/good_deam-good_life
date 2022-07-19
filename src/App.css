@@ -296,6 +296,8 @@
   @media screen and (max-width: 700px) {
       .checkout_container {
           display: block;
+          padding: 35px 30px;
+          margin-left: 0px;
       }
       .to_pay_container {
         margin: 30px 0 0 0;
