@@ -33,12 +33,14 @@ const Navbar = () => {
                     <img className='logo' src='/LOGO3.png'/>
                 </div>
             </div>
+            <div className='container_cart_item'>
             <img 
                 className='cart' src='/cart.png'
                 onClick={() => route('/cart')}
             />
             <div className='number_of_goods'>
                 {!purchasedItemsNumber ?null :purchasedItemsNumber}
+            </div>
             </div>
         </div>
     );
