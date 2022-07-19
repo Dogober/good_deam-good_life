@@ -45,7 +45,6 @@
 }
 .content{
     display: flex;
-    justify-content: space-between;
     margin: 30px 30px 30px 0;
 }
 .filters {
@@ -55,7 +54,7 @@
     padding: 30px;
     background-color: rgba(170, 201, 221, 0.3);
 }
-@media screen and (max-width: 700px)  {
+@media screen and (max-width: 700px), (orientation: portrait)  {
     .filters {
         min-width: 150px;
         height: max-content;
