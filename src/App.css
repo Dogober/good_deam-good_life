@@ -193,7 +193,7 @@
     .item_img {
         display: none;
       }  
-    }  
+}  
 .item_container:last-child {
   border-bottom: none;
   padding-bottom: 0;
@@ -281,13 +281,27 @@
 .to_pay_container {
   position: sticky;
   width: 450px;
-  height: 440px;
+  height: min-content;
   margin: 0 0 0 50px;
   border: 1px solid gray;
   top: 20px;
   border-radius: 5px;
   padding: 25px 20px 0;
 }
+.checkout_container {
+    display: flex;
+    padding: 35px 50px;
+    margin-left: 30px;
+  }
+  @media screen and (max-width: 700px) {
+      .checkout_container {
+          display: block;
+      }
+      .to_pay_container {
+        margin: 30px 0 0 0;
+        width: 100%;
+      }  
+  }    
 .to_pay_total {
   font-size: 1.9em;
 }
@@ -350,7 +364,7 @@
   color: rgb(239, 242, 245);
   border-radius: 13px;
   background-color: #707375;
-  margin-right: 10px;
+  margin: 15px 0 15px 0;
 }
 .checkout_modal {
   position: fixed;
@@ -415,15 +429,14 @@ fieldset {
   font-size: 16px;
   margin: 10px 0;
 }
-.checkout_container {
-  display: flex;
-  padding: 35px 50px;
-  margin-left: 30px;
-}
 .checkout_your_data {
   display: flex;
-  justify-content: space-between;
 }
+@media screen and (max-width: 700px) {
+    .checkout_your_data {
+        display: block;
+      }        
+}    
 .data_container_surname {
   display: flex;
   width: 100%;
