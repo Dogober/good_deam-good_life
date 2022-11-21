@@ -1,5 +1,5 @@
 import axios from "axios"
-import { addCommentsByMattressId, addSelectedMattress, catchError } from "../store/reducers/mattressIdReducer"
+import { addCommentsByMattressId, addSelectedMattress, catchError } from "../store/reducers/mattressDetailsReducer"
 import {
     addManyMattress, 
     filterMattressesOnProducer, 
