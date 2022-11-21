@@ -8,7 +8,7 @@ import ProductNotFound from './ProductNotFound';
 import MattressDescription from '../components/MattressDescription';
 
 const MattressDetails = () => {
-    const selectedMattress = useSelector(state => state.mattressId.selectedMattress)
+    const selectedMattress = useSelector(state => state.mattressDetails.selectedMattress)
     const dispatch = useDispatch()
     const params = useParams()
 

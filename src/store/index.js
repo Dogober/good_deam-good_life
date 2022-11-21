@@ -3,12 +3,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { cartReducer } from "./reducers/cartReducer";
 import { checkoutReducer } from "./reducers/checkoutReducer";
-import { mattressIdReducer } from "./reducers/mattressIdReducer";
 import { mattressListReducer } from "./reducers/mattressListReduser";
+import { mattressDetailsReducer } from "./reducers/mattressDetailsReducer";
+
 
 const rootReducer = combineReducers({
     mattressList: mattressListReducer,
-    mattressId: mattressIdReducer,
+    mattressDetails: mattressDetailsReducer,
     cart: cartReducer,
     checkout: checkoutReducer
 })

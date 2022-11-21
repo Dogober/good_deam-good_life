@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { addToCart } from '../store/reducers/cartReducer';
 
 const MattressDescription = () => {
-    const selectedMattress = useSelector(state => state.mattressId.selectedMattress)
+    const selectedMattress = useSelector(state => state.mattressDetails.selectedMattress)
     const purchasedItems = useSelector(state => state.cart.purchasedItems)
     const dispatch = useDispatch()
     const route = useNavigate()
