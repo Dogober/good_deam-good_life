@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/good_deam-good_life/static/css/main.57c1bb68.css",
+    "main.js": "/good_deam-good_life/static/js/main.0efce0cb.js",
+    "static/media/mattress.png": "/good_deam-good_life/static/media/mattress.4681f4e3212aa032a2c8.png",
+    "static/media/cart-with-goods.png": "/good_deam-good_life/static/media/cart-with-goods.f44f366d774f25a0dc8e.png",
+    "index.html": "/good_deam-good_life/index.html",
+    "main.57c1bb68.css.map": "/good_deam-good_life/static/css/main.57c1bb68.css.map",
+    "main.0efce0cb.js.map": "/good_deam-good_life/static/js/main.0efce0cb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.57c1bb68.css",
+    "static/js/main.0efce0cb.js"
+  ]
+}
