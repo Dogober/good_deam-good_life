@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Mattress from '../assets/mattress.png'
 
 const MattressForm = ({props}) => {
     const route = useNavigate()
@@ -10,7 +11,7 @@ const MattressForm = ({props}) => {
         >
             <div className='mattress_form'>
                 <div className='mattress_img_container'>
-                    <img className='mattress_img' src={props.img}/>
+                    <img className='mattress_img' src={Mattress}/>
                 </div>
                 <div>
                     <div className='mattress_options'>Матрас №{props.id}</div>

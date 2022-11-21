@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { changeNumberPurchasedItem, deletePurchasedItem } from '../store/reducers/cartReducer';
+import Mattress from '../assets/mattress.png'
 
 const ItemInCart = ({item}) => {
     const dispatch = useDispatch()
@@ -8,7 +9,7 @@ const ItemInCart = ({item}) => {
     return (
         <div className='item_container'>
             <div className='item_body'>
-                <img className='item_img' src={item.mattress.img}/>
+                <img className='item_img' src={Mattress}/>
                 <div className='item_description'>
                     {item.mattress.producer}. {item.mattress.size}. {item.mattress.body}
                 </div>

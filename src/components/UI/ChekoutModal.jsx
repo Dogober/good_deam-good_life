@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clearCart } from '../../store/reducers/cartReducer';
 import { formClear } from '../../store/reducers/checkoutReducer';
+import CartWithGoods from '../../assets/cart-with-goods.png'
 
 const ChekoutModal = () => {
     const {validity} = useSelector(state => state.checkout)
@@ -20,7 +21,7 @@ const ChekoutModal = () => {
     return (
         <div className={classArr.join(' ')}>
             <div className='checkout_modal_content'>
-                <img src='/cart-with-goods.png'/>
+                <img src={CartWithGoods}/>
                     <div className='checkout_modal_thanks'>Спасибо за покупку!</div>
                 <button
                     className='checkout_modal_back_to_home'

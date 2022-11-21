@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addToCart } from '../store/reducers/cartReducer';
+import Mattress from '../assets/mattress.png'
 
 const MattressDescription = () => {
     const selectedMattress = useSelector(state => state.mattressDetails.selectedMattress)
@@ -12,7 +13,7 @@ const MattressDescription = () => {
     return (
         <div className='mattress_description_content'>
             <div>
-                <img className='img_detail' src={selectedMattress.img}/>
+                <img className='img_detail' src={Mattress}/>
             </div>
             <div className='detail'>
                 <div className='detail_producer'>

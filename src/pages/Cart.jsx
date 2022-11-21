@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ItemInCart from '../components/ItemInCart';
+import EmptyCart from '../assets/empty-cart.png'
 
 const Cart = () => {
     const {purchasedItems, purchasedItemsCost} = useSelector(state => state.cart)
@@ -29,7 +30,7 @@ const Cart = () => {
             </div>
         } else {
             return <div className='empty_cart_container'>
-                <img className='empty_cart' src='/empty-cart.png'/>
+                <img className='empty_cart' src={EmptyCart}/>
                 Ваша корзина пуста.
             </div>
         }
