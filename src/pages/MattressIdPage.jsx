@@ -19,8 +19,8 @@ useEffect(() => {
     return () => {
         dispatch(addSelectedMattress(null))
     }
-}, [])
-useEffect(() => window.scrollTo(0, 0), []);
+})
+    window.scrollTo(0, 0)
 
 const renderingSelectedMattressByCondition = () => {
     if (selectedMattress === undefined) {
